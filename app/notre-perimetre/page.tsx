@@ -34,7 +34,7 @@ export default function NotrePerimetre() {
             Le cabinet établit vos bulletins de paie selon votre convention
             collective, produit et transmet vos DSN mensuelles et
             événementielles en qualité de tiers déclarant mandaté, gère les
-            formalités d&apos;entrée (DPAE, affiliations) et de sortie (solde
+            formalités d&apos;entrée (DPAE, la déclaration préalable à l&apos;embauche, et affiliations) et de sortie (solde
             de tout compte, certificat de travail, attestation France Travail)
             de vos salariés, et vous remet chaque mois le journal de paie,
             l&apos;état des charges et les données destinées à votre

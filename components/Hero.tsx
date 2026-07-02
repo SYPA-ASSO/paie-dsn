@@ -1,3 +1,5 @@
+import MoisPaie from "@/components/MoisPaie";
+
 export default function Hero() {
   return (
     <section className="relative overflow-hidden">
@@ -51,7 +53,7 @@ export default function Hero() {
                 <p className="text-xs uppercase tracking-wide text-ink/60">
                   Bulletin de paie
                 </p>
-                <p className="font-semibold text-navy">Juin 2026</p>
+                <p className="font-semibold text-navy"><MoisPaie /></p>
               </div>
               <span className="rounded-full bg-emerald-tint px-3 py-1 text-xs font-bold text-emerald-deep">
                 Conforme

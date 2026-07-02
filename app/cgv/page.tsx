@@ -19,7 +19,7 @@ const articles = [
   {
     titre: "Article 2 · Objet et périmètre des prestations",
     contenu: [
-      "Le cabinet réalise, sur la base des éléments transmis par le client : l'établissement des bulletins de paie conformément à la convention collective applicable, la production et la transmission des déclarations sociales nominatives (DSN) mensuelles et événementielles en qualité de tiers déclarant mandaté, les formalités d'entrée des salariés (DPAE, affiliations), les documents de sortie (reçu pour solde de tout compte, certificat de travail, attestation France Travail, DSN de fin de contrat), le journal de paie, l'état des charges et les éléments de données destinés à l'expert-comptable du client.",
+      "Le cabinet réalise, sur la base des éléments transmis par le client : l'établissement des bulletins de paie conformément à la convention collective applicable, la production et la transmission des déclarations sociales nominatives (DSN) mensuelles et événementielles en qualité de tiers déclarant mandaté, les formalités d'entrée des salariés (DPAE, déclaration préalable à l'embauche, et affiliations), les documents de sortie (reçu pour solde de tout compte, certificat de travail, attestation France Travail, DSN de fin de contrat), le journal de paie, l'état des charges et les éléments de données destinés à l'expert-comptable du client.",
       "Sont expressément exclus du périmètre : tous travaux comptables au sens des articles 2 et 20 de l'ordonnance n° 45-2138 du 19 septembre 1945 (le cabinet remet les données de paie au client ou à son expert-comptable mais ne passe aucune écriture dans la comptabilité du client et n'établit aucune déclaration fiscale) ; toute consultation juridique détachée de la production de la paie au sens de la loi n° 71-1130 du 31 décembre 1971. Le cabinet répond aux questions relevant directement de l'exécution de la prestation de paie et oriente le client vers un avocat pour toute autre question juridique.",
     ],
   },
@@ -89,13 +89,13 @@ const articles = [
   {
     titre: "Article 12 · Droit de rétractation des consommateurs",
     contenu: [
-      "Le client consommateur (notamment particulier employeur) qui conclut le contrat à distance dispose d'un délai de rétractation de 14 jours à compter de la conclusion du contrat (article L. 221-18 du Code de la consommation), en écrivant à contact@cholez-pagotto.fr. S'il demande l'exécution de la prestation avant l'expiration de ce délai, il reste redevable du prix correspondant au service fourni jusqu'à sa rétractation ; s'il demande l'exécution complète avant ce terme, il renonce expressément à son droit de rétractation.",
+      "Le client consommateur (notamment particulier employeur) qui conclut le contrat à distance dispose d'un délai de rétractation de 14 jours à compter de la conclusion du contrat (article L. 221-18 du Code de la consommation), via le formulaire de contact du site. S'il demande l'exécution de la prestation avant l'expiration de ce délai, il reste redevable du prix correspondant au service fourni jusqu'à sa rétractation ; s'il demande l'exécution complète avant ce terme, il renonce expressément à son droit de rétractation.",
     ],
   },
   {
     titre: "Article 13 · Médiation et litiges",
     contenu: [
-      "Réclamations : contact@cholez-pagotto.fr, réponse sous 30 jours. À défaut de résolution amiable, tout client consommateur peut recourir gratuitement au médiateur de la consommation désigné par le cabinet : Centre de Médiation de la Consommation de Conciliateurs de Justice (CM2C), www.cm2c.net, ou à la plateforme européenne de règlement en ligne des litiges (https://ec.europa.eu/consumers/odr).",
+      "Réclamations : via le formulaire de contact du site, réponse sous 30 jours. À défaut de résolution amiable, tout client consommateur peut recourir gratuitement au médiateur de la consommation désigné par le cabinet : Centre de Médiation de la Consommation de Conciliateurs de Justice (CM2C), www.cm2c.net, ou à la plateforme européenne de règlement en ligne des litiges (https://ec.europa.eu/consumers/odr).",
       "Les présentes CGV sont soumises au droit français. Pour les clients professionnels, tout litige relève des juridictions dans le ressort desquelles est situé le siège du cabinet. Les clients consommateurs peuvent saisir la juridiction de leur choix parmi celles territorialement compétentes.",
     ],
   },

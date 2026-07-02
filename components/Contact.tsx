@@ -12,10 +12,10 @@ export default function Contact() {
             48&nbsp;heures.
           </p>
           <a
-            href="mailto:contact@cholez-pagotto.fr?subject=Demande%20de%20devis%20paie%20et%20DSN"
+            href="/contact"
             className="mt-8 inline-block rounded-full bg-emerald-brand px-8 py-4 text-lg font-semibold text-white shadow-lg transition hover:bg-emerald-deep"
           >
-            contact@cholez-pagotto.fr
+            Décrire ma situation
           </a>
           <p className="mt-4 text-sm text-white/70">
             Devis gratuit et sans engagement

@@ -9,13 +9,13 @@ const etapes = [
     numero: "2",
     titre: "Nous établissons les bulletins",
     texte:
-      "Les bulletins sont préparés selon votre convention collective, contrôlés, puis mis à votre disposition. Vous disposez de 48 heures pour nous signaler une observation.",
+      "Les bulletins sont préparés selon votre convention collective, contrôlés, puis mis à votre disposition. Vous disposez de 48 heures pour nous signaler une observation ; trois cas font l'objet d'une validation expresse de votre part : le premier mois du dossier, les soldes de tout compte et les régularisations.",
   },
   {
     numero: "3",
     titre: "La DSN est transmise",
     texte:
-      "Sans observation de votre part, les bulletins sont réputés validés : la DSN part aux organismes et vous recevez le dossier complet du mois, bulletins, journal de paie et état des charges.",
+      "Sans observation de votre part dans ce délai (hors cas à validation expresse), les bulletins sont réputés validés : la DSN part aux organismes et vous recevez le dossier complet du mois, bulletins, journal de paie et état des charges.",
   },
 ];
 

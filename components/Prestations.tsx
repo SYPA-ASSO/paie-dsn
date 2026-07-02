@@ -17,7 +17,7 @@ const prestations = [
   {
     titre: "Entrées de salariés",
     texte:
-      "DPAE, affiliations aux caisses de retraite et de prévoyance, paramétrage du dossier salarié dès l'embauche.",
+      "DPAE (déclaration préalable à l'embauche), affiliations aux caisses de retraite et de prévoyance, paramétrage du dossier salarié dès l'embauche.",
   },
   {
     titre: "Sorties et soldes de tout compte",

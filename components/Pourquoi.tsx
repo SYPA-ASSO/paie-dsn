@@ -26,10 +26,10 @@ export default function Pourquoi() {
         <p className="text-sm font-bold uppercase tracking-wider text-amber-brand">
           Externaliser plutôt que s&apos;équiper
         </p>
-        <h2 className="mt-2 max-w-2xl text-3xl font-bold sm:text-4xl">
+        <h2 className="mt-2 text-3xl font-bold sm:text-4xl">
           Un logiciel de paie ne répond pas au téléphone
         </h2>
-        <p className="mt-4 max-w-2xl text-lg">
+        <p className="mt-4 text-lg leading-relaxed">
           Les logiciels de paie en ligne sont de bons outils, à condition
           d&apos;avoir le temps et les compétences pour les piloter. Si la paie
           n&apos;est pas votre métier, la déléguer coûte souvent moins cher

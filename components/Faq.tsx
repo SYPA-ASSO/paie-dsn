@@ -12,7 +12,7 @@ export const faqItems = [
   {
     question: "Qui transmet la DSN ?",
     reponse:
-      "Nous. La DSN mensuelle est générée, contrôlée puis transmise aux organismes une fois les bulletins réputés validés : après leur mise à disposition, vous disposez de 48 heures pour formuler une observation. Les DSN événementielles (arrêt de travail, fin de contrat) sont transmises dans les délais réglementaires. Vous recevez les comptes rendus de transmission.",
+      "Nous. La DSN mensuelle est générée, contrôlée puis transmise aux organismes une fois les bulletins réputés validés : après leur mise à disposition, vous disposez de 48 heures pour formuler une observation. Trois cas requièrent votre validation expresse : le premier mois du dossier, les soldes de tout compte et DSN de fin de contrat, et les régularisations rétroactives. Les DSN événementielles (arrêt de travail, fin de contrat) sont transmises dans les délais réglementaires. Vous recevez les comptes rendus de transmission.",
   },
   {
     question: "Que se passe-t-il en cas d'arrêt de travail ou de départ ?",

@@ -2,7 +2,7 @@ const publics = [
   {
     titre: "TPE et PME",
     texte:
-      "De la première embauche à plusieurs dizaines de salariés, tous secteurs : bâtiment, hôtellerie-restauration, commerce, bureaux d'études. Votre convention collective est appliquée, pas approximée.",
+      "De la première embauche à plusieurs dizaines de salariés, tous secteurs : bâtiment, hôtellerie-restauration, commerce, bureaux d'études... Votre convention collective est appliquée, pas approximée.",
   },
   {
     titre: "Associations et ESS",
@@ -12,12 +12,12 @@ const publics = [
   {
     titre: "Professions libérales",
     texte:
-      "Cabinets d'avocats (nous sommes à jour de la convention collective de leur personnel), cabinets médicaux et dentaires, pharmacies d'officine, architectes, notaires : un ou plusieurs salariés, chaque paie mérite d'être juste, sans y consacrer vos soirées.",
+      "Cabinets d'avocats (nous sommes à jour de la convention collective de leur personnel), cabinets médicaux et dentaires, pharmacies d'officine, architectes, notaires... Un ou plusieurs salariés, chaque paie mérite d'être juste, sans y consacrer vos soirées.",
   },
   {
     titre: "Particuliers employeurs",
     texte:
-      "Assistant de vie, garde d'enfants, employé de maison : nous établissons les bulletins et les déclarations de votre salarié à domicile, selon la convention collective des particuliers employeurs et de l'emploi à domicile.",
+      "Assistant de vie, garde d'enfants, employé de maison : nous préparons chaque mois les calculs, contrats et documents de votre salarié à domicile, selon la convention collective des particuliers employeurs. Vous déclarez au CESU avec des chiffres justes.",
   },
   {
     titre: "Dirigeants assimilés salariés",

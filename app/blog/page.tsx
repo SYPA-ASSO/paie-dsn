@@ -12,8 +12,42 @@ export const metadata: Metadata = {
 };
 
 export default function Blog() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Blog",
+        "@id": "https://paie-et-dsn.fr/blog",
+        name: "Blog paie-et-dsn.fr",
+        description:
+          "Articles pédagogiques sur la paie, la DSN, les conventions collectives et les obligations des employeurs.",
+        publisher: {
+          "@type": "Organization",
+          name: "paie-et-dsn.fr · Cabinet Cholez-Pagotto",
+        },
+        blogPost: articles.map((a) => ({
+          "@type": "BlogPosting",
+          headline: a.titre,
+          datePublished: a.date,
+          url: `https://paie-et-dsn.fr/blog/${a.slug}`,
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Accueil", item: "https://paie-et-dsn.fr" },
+          { "@type": "ListItem", position: 2, name: "Blog", item: "https://paie-et-dsn.fr/blog" },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <Header />
       <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <p className="text-sm font-bold uppercase tracking-wider text-amber-brand">

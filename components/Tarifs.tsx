@@ -46,6 +46,65 @@ export default function Tarifs() {
           </div>
           <Simulateur />
         </div>
+
+        <div className="mt-12">
+          <h3 className="text-xl font-bold text-navy sm:text-2xl">
+            En option, avec ou sans forfait de paie
+          </h3>
+          <div className="mt-6 grid gap-6 md:grid-cols-2">
+            <a
+              href="/veille-sociale-rh"
+              className="group rounded-2xl border border-line bg-white p-6 transition hover:border-emerald-brand/50 hover:shadow-md"
+            >
+              <p className="text-xs font-bold uppercase tracking-wide text-ink/60">
+                Abonnement veille
+              </p>
+              <p className="mt-1 font-[family-name:var(--font-display)] text-xl font-bold text-navy">
+                L&apos;Essentiel Social
+              </p>
+              <p className="mt-1 font-[family-name:var(--font-display)] text-2xl font-bold text-emerald-deep">
+                109,90&nbsp;€{" "}
+                <span className="text-sm font-semibold text-ink/70">
+                  par mois
+                </span>
+              </p>
+              <p className="mt-2 text-sm leading-relaxed">
+                Newsletters hebdomadaires, jurisprudences commentées,
+                webinaires gratuits, plus de 350 modèles de documents social et
+                RH, alertes sur les actualités sociales, RH et paie.
+              </p>
+              <p className="mt-3 text-sm font-semibold text-emerald-deep group-hover:underline">
+                Découvrir la formule
+              </p>
+            </a>
+            <a
+              href="/veille-sociale-rh"
+              className="group rounded-2xl border-2 border-emerald-brand bg-white p-6 transition hover:shadow-md"
+            >
+              <p className="text-xs font-bold uppercase tracking-wide text-ink/60">
+                Abonnement veille et assistance
+              </p>
+              <p className="mt-1 font-[family-name:var(--font-display)] text-xl font-bold text-navy">
+                Le Copilote Social
+              </p>
+              <p className="mt-1 font-[family-name:var(--font-display)] text-2xl font-bold text-emerald-deep">
+                229,90&nbsp;€{" "}
+                <span className="text-sm font-semibold text-ink/70">
+                  par mois
+                </span>
+              </p>
+              <p className="mt-2 text-sm leading-relaxed">
+                Tout L&apos;Essentiel Social, plus dossiers de synthèse et
+                procédures RH, outils de gestion, priorité en information
+                juridique employeur et en assistance administrative paie et RH,
+                frais de dossier offerts pour toutes études assurantielles.
+              </p>
+              <p className="mt-3 text-sm font-semibold text-emerald-deep group-hover:underline">
+                Découvrir la formule
+              </p>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -19,7 +19,6 @@ export default function SchemaOrg() {
         url: "https://paie-et-dsn.fr",
         description:
           "Externalisation de la paie et des déclarations sociales (DSN) pour les TPE, PME, associations, professions libérales et particuliers employeurs. Toutes conventions collectives.",
-        email: "contact@cholez-pagotto.fr",
         telephone: "+33374474055",
         address: {
           "@type": "PostalAddress",

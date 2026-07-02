@@ -1,40 +1,14 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FormulaireContact from "@/components/FormulaireContact";
 
 export const metadata: Metadata = {
   title: "Contact : demandez votre devis de paie externalisée",
   description:
-    "Contactez le cabinet pour un devis de paie externalisée, une question sur votre convention collective ou les options veille sociale et assurances. Réponse sous 48 heures.",
+    "Contactez le cabinet via le formulaire : devis de paie externalisée, particulier employeur, abonnements veille sociale, assurances de l'employeur, partenariats. Réponse sous 48 heures.",
   alternates: { canonical: "https://paie-et-dsn.fr/contact" },
 };
-
-const motifs = [
-  {
-    titre: "Devis de paie externalisée",
-    texte:
-      "Indiquez votre effectif, votre convention collective et votre situation (première embauche, changement de prestataire, reprise d'un dossier).",
-    sujet: "Demande de devis paie et DSN",
-  },
-  {
-    titre: "Particulier employeur",
-    texte:
-      "Décrivez l'emploi à domicile concerné : assistant de vie, garde d'enfants, employé de maison, et votre mode de déclaration actuel.",
-    sujet: "Particulier employeur : demande d'accompagnement",
-  },
-  {
-    titre: "Veille sociale et RH",
-    texte:
-      "Précisez la formule qui vous intéresse, L'Essentiel Social ou Le Copilote Social, et votre convention collective.",
-    sujet: "Abonnement veille sociale et RH",
-  },
-  {
-    titre: "Assurances de l'employeur",
-    texte:
-      "Santé et prévoyance collectives, flotte, RC pro, cyber : dites-nous ce que vous souhaitez couvrir ou comparer.",
-    sujet: "Étude assurantielle employeur",
-  },
-];
 
 export default function Contact() {
   const schema = {
@@ -43,8 +17,7 @@ export default function Contact() {
     mainEntity: {
       "@type": "ProfessionalService",
       name: "paie-et-dsn.fr · Cabinet Cholez-Pagotto",
-      telephone: "+33374474055",
-      email: "contact@cholez-pagotto.fr",
+      url: "https://paie-et-dsn.fr/contact",
       address: {
         "@type": "PostalAddress",
         streetAddress: "12 rue d'Olima",
@@ -62,79 +35,43 @@ export default function Contact() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
       <Header />
-      <main className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+      <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
         <p className="text-sm font-bold uppercase tracking-wider text-amber-brand">
           Contact
         </p>
         <h1 className="mt-2 text-3xl font-bold sm:text-4xl">
           Parlons de votre paie
         </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-relaxed">
-          Décrivez votre situation en quelques lignes : nous vous répondons
-          sous 48&nbsp;heures avec, selon le cas, un devis détaillé ou la bonne
-          orientation. Aucune demande ne reste sans réponse.
+        <p className="mt-5 text-lg leading-relaxed">
+          Sélectionnez votre demande et décrivez votre situation : nous vous
+          répondons sous 48&nbsp;heures ouvrées avec, selon le cas, un devis
+          détaillé ou la bonne orientation. Aucune demande ne reste sans
+          réponse.
         </p>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2">
-          {motifs.map((motif) => (
-            <article
-              key={motif.titre}
-              className="flex flex-col rounded-2xl border border-line bg-white p-6"
-            >
-              <h2 className="text-lg font-bold">{motif.titre}</h2>
-              <p className="mt-2 flex-1 text-sm leading-relaxed">
-                {motif.texte}
-              </p>
-              <a
-                href={`mailto:contact@cholez-pagotto.fr?subject=${encodeURIComponent(motif.sujet)}`}
-                className="mt-4 inline-block rounded-full bg-emerald-brand px-5 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-emerald-deep"
-              >
-                Écrire au cabinet
-              </a>
-            </article>
-          ))}
+        <div className="mt-10 rounded-2xl border border-line bg-white p-6 sm:p-8">
+          <FormulaireContact />
         </div>
 
-        <div className="mt-10 grid gap-6 rounded-2xl bg-navy p-8 text-white sm:grid-cols-3">
-          <div>
-            <p className="text-sm font-bold uppercase tracking-wide text-amber-brand">
-              E-mail
-            </p>
-            <a
-              href="mailto:contact@cholez-pagotto.fr"
-              className="mt-1 block font-semibold hover:underline"
-            >
-              contact@cholez-pagotto.fr
-            </a>
-          </div>
-          <div>
-            <p className="text-sm font-bold uppercase tracking-wide text-amber-brand">
-              Téléphone
-            </p>
-            <a
-              href="tel:+33374474055"
-              className="mt-1 block font-semibold hover:underline"
-            >
-              03&nbsp;74&nbsp;47&nbsp;40&nbsp;55
-            </a>
-          </div>
-          <div>
-            <p className="text-sm font-bold uppercase tracking-wide text-amber-brand">
-              Adresse
-            </p>
-            <p className="mt-1 font-semibold">
-              Cabinet Cholez-Pagotto
-              <br />
-              12 rue d&apos;Olima, 88000 Épinal
-            </p>
-          </div>
+        <div className="mt-8 rounded-2xl bg-navy p-6 text-white sm:p-8">
+          <p className="text-sm font-bold uppercase tracking-wide text-amber-brand">
+            Le cabinet
+          </p>
+          <p className="mt-2 font-semibold">
+            Cabinet Cholez-Pagotto · 12 rue d&apos;Olima, 88000 Épinal
+          </p>
+          <p className="mt-1 text-sm text-white/80">
+            Les échanges s&apos;effectuent via le formulaire ci-dessus, qui
+            nous parvient immédiatement et nous permet de vous répondre avec
+            votre dossier déjà qualifié.
+          </p>
         </div>
 
         <p className="mt-6 text-xs leading-relaxed text-ink/70">
-          Les données transmises par e-mail sont utilisées uniquement pour
-          répondre à votre demande et établir un devis, conformément à notre
-          politique de confidentialité. Aucune donnée n&apos;est utilisée à des
-          fins de prospection sans votre accord.
+          Les données transmises via ce formulaire sont utilisées uniquement
+          pour traiter votre demande et, le cas échéant, établir un devis,
+          conformément à notre politique de confidentialité. Aucune donnée
+          n&apos;est utilisée à des fins de prospection sans votre accord.
         </p>
       </main>
       <Footer />

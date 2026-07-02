@@ -21,16 +21,17 @@ export default function PolitiqueConfidentialite() {
             <h2 className="text-xl font-bold">Responsable de traitement</h2>
             <p className="mt-2">
               Le responsable de traitement est le Cabinet Cholez-Pagotto
-              (François Cholez), SIREN 490&nbsp;889&nbsp;516, Épinal. Contact :
-              contact@cholez-pagotto.fr.
+              (François Cholez), SIREN 490&nbsp;889&nbsp;516, 12 rue d&apos;Olima, 88000 Épinal. Contact :
+              via le formulaire de contact du site.
             </p>
           </section>
           <section>
             <h2 className="text-xl font-bold">Ce site ne vous piste pas</h2>
             <p className="mt-2">
-              Ce site ne dépose aucun cookie, n&apos;utilise aucun outil de
-              mesure d&apos;audience tiers et ne comporte aucun formulaire de
-              collecte. Les polices de caractères sont auto-hébergées : aucune
+              Ce site ne dépose aucun cookie de suivi et n&apos;utilise aucun
+              outil de mesure d&apos;audience tiers. Seuls des cookies
+              strictement nécessaires à l&apos;authentification sont utilisés
+              dans l&apos;espace client. Les polices de caractères sont auto-hébergées : aucune
               donnée n&apos;est transmise à Google ou à un autre fournisseur de
               polices lors de votre visite. Le simulateur de tarif fonctionne
               entièrement dans votre navigateur : les valeurs que vous
@@ -40,9 +41,13 @@ export default function PolitiqueConfidentialite() {
           <section>
             <h2 className="text-xl font-bold">Données traitées</h2>
             <p className="mt-2">
-              Les seules données traitées sont celles que vous nous transmettez
-              volontairement par e-mail dans le cadre d&apos;une demande de
-              devis ou de l&apos;exécution d&apos;une prestation de paie. Dans
+              Les données traitées sont celles que vous transmettez
+              volontairement via le formulaire de contact du site (type de
+              demande, identité, coordonnées, et pour les demandes de devis :
+              SIRET, adresse du siège, effectif, convention collective,
+              message), celles liées à votre compte de l&apos;espace client
+              (e-mail, mot de passe chiffré, journal des accès), et celles
+              nécessaires à l&apos;exécution des prestations de paie. Dans
               le cadre des prestations, le cabinet agit en qualité de
               sous-traitant au sens de l&apos;article 28 du RGPD pour les
               données des salariés de ses clients employeurs ; ce traitement
@@ -85,7 +90,7 @@ export default function PolitiqueConfidentialite() {
               Vous disposez des droits d&apos;accès, de rectification,
               d&apos;effacement, de limitation, de portabilité et
               d&apos;opposition prévus par le RGPD. Pour les exercer :
-              contact@cholez-pagotto.fr. Vous pouvez également introduire une
+              utilisez le formulaire de contact du site. Vous pouvez également introduire une
               réclamation auprès de la CNIL (www.cnil.fr).
             </p>
           </section>

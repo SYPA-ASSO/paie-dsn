@@ -52,6 +52,11 @@ git push -u origin main
 
 2. Sur vercel.com : Add New Project, importer le repo, framework detecte automatiquement (Next.js), deployer.
 
+2 bis. Formulaire de contact : dans Vercel > Settings > Environment Variables, ajouter :
+   - BREVO_API_KEY : cle API Brevo du cabinet (Brevo > SMTP & API > cles API)
+   - CONTACT_TO_EMAIL : adresse de reception des demandes (jamais affichee sur le site)
+   Puis redeployer. Sans ces variables, le formulaire repond "pas encore configure".
+
 3. Rattacher le domaine (NDD actuellement chez Hostinger) : Project Settings > Domains > ajouter `paie-et-dsn.fr` et `www.paie-et-dsn.fr` (redirection www vers apex). Puis dans hPanel Hostinger > Domaines > paie-et-dsn.fr > DNS :
    - modifier l'enregistrement A de l'apex (@) vers `76.76.21.21` (valeur a confirmer dans l'ecran Vercel)
    - modifier le CNAME de `www` vers `cname.vercel-dns.com`

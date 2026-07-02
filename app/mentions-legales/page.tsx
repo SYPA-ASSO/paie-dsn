@@ -23,15 +23,23 @@ export default function MentionsLegales() {
           <section>
             <h2 className="text-xl font-bold">Éditeur du site</h2>
             <p className="mt-2">
-              Le site paie-et-dsn.fr est édité par François CHOLEZ,
-              entrepreneur individuel, exerçant sous le nom commercial CBT
-              CHOLEZ-PAGOTTO (Cabinet Cholez-Pagotto), SIRET
-              490&nbsp;889&nbsp;516&nbsp;00053, dont le siège social est situé
-              12 rue d&apos;Olima, 88000 Épinal. Téléphone :
-              03&nbsp;74&nbsp;47&nbsp;40&nbsp;55. E-mail :
-              contact@cholez-pagotto.fr. Directeur de la publication : François
-              CHOLEZ.
+              Le site paie-et-dsn.fr est édité par CBT CHOLEZ-PAGOTTO, CHOLEZ
+              François E.I. SIRET 490&nbsp;889&nbsp;516&nbsp;00053, dont le
+              siège social est situé 12 rue d&apos;Olima, 88000 Épinal.
+              Téléphone : 03&nbsp;74&nbsp;47&nbsp;40&nbsp;55 (mention requise
+              par l&apos;article 6-III de la LCEN).
             </p>
+            <p className="mt-2">
+              Contact :{" "}
+              <a
+                href="/contact"
+                className="font-semibold text-emerald-deep underline"
+              >
+                via le formulaire du présent site
+              </a>
+              .
+            </p>
+            <p className="mt-2">Directeur de la publication : François CHOLEZ.</p>
           </section>
           <section>
             <h2 className="text-xl font-bold">Activités réglementées</h2>
@@ -59,21 +67,19 @@ export default function MentionsLegales() {
             <p className="mt-2">
               La gestion externalisée de la paie et des déclarations sociales
               proposée sur ce site est exercée en qualité de prestataire
-              indépendant, dans le respect du périmètre réservé aux
-              experts-comptables par l&apos;ordonnance n°&nbsp;45-2138 du 19
-              septembre 1945 : le cabinet ne réalise aucun travail comptable
-              pour le compte de tiers. François CHOLEZ intervient en qualité de
-              juriste et de formaliste, membre adhérent du Conseil
-              Représentatif des Formalistes de France (CRFF).
+              indépendant, dans le respect du périmètre énoncé par
+              l&apos;ordonnance n°&nbsp;45-2138 du 19 septembre 1945 : le cabinet ne réalise aucun travail comptable
+              pour le compte de tiers. Par ailleurs, François CHOLEZ intervient dans
+              le cadre des activités du cabinet en qualité de juriste et de
+              formaliste. Le cabinet est membre du Conseil Représentatif des
+              Formalistes de France (CRFF).
             </p>
           </section>
           <section>
             <h2 className="text-xl font-bold">Hébergement</h2>
             <p className="mt-2">
-              Site : Vercel Inc., 340 Pine Street Suite 701, San Francisco CA
-              94104, États-Unis (vercel.com). Nom de domaine (registrar) :
-              Hostinger International Ltd., 61 Lordou Vironos Street, 6023
-              Larnaca, Chypre (hostinger.fr).
+              L&apos;hébergement du site est réalisé par Vercel Inc., 340 Pine
+              Street Suite 701, San Francisco CA 94104, États-Unis.
             </p>
           </section>
           <section>
@@ -117,13 +123,23 @@ export default function MentionsLegales() {
           <section>
             <h2 className="text-xl font-bold">Données personnelles et cookies</h2>
             <p className="mt-2">
-              Ce site ne dépose aucun cookie. Le traitement des données
-              personnelles est détaillé dans la politique de confidentialité
+              Ce site ne dépose aucun cookie de suivi ni de mesure
+              d&apos;audience. Seuls des cookies strictement nécessaires à
+              l&apos;authentification sont utilisés dans l&apos;espace client
+              (accès par e-mail et mot de passe). Le traitement des données
+              personnelles, notamment celles transmises via le formulaire de
+              contact, est détaillé dans la politique de confidentialité
               accessible depuis le pied de page. Conformément au RGPD et à la
               loi Informatique et Libertés, vous disposez de droits
               d&apos;accès, de rectification, d&apos;effacement, de
-              portabilité, d&apos;opposition et de limitation, exerçables à
-              l&apos;adresse contact@cholez-pagotto.fr.
+              portabilité, d&apos;opposition et de limitation, exerçables{" "}
+              <a
+                href="/contact"
+                className="font-semibold text-emerald-deep underline"
+              >
+                via le formulaire de contact du site
+              </a>
+              .
             </p>
           </section>
           <section>

@@ -35,11 +35,30 @@ export default function ArticleQuiPeutEtablir() {
       "https://paie-et-dsn.fr/blog/qui-peut-etablir-vos-bulletins-de-paie",
   };
 
+  const filAriane = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: "https://paie-et-dsn.fr" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://paie-et-dsn.fr/blog" },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Qui peut établir vos bulletins de paie ?",
+        item: "https://paie-et-dsn.fr/blog/qui-peut-etablir-vos-bulletins-de-paie",
+      },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(filAriane) }}
       />
       <Header />
       <main className="mx-auto max-w-3xl px-4 py-16 sm:px-6">

@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Paie du particulier employeur : bulletins, CESU, déclarations",
   description:
-    "Vous employez un salarié à domicile (assistant de vie, garde d'enfants, employé de maison) ? Nous établissons bulletins et déclarations selon la convention collective des particuliers employeurs, et vous accompagnons du contrat au départ.",
+    "Vous employez un salarié à domicile (assistant de vie, garde d'enfants, employé de maison) ? Nous préparons calculs, contrats et documents selon la convention collective des particuliers employeurs ; vous déclarez sereinement au CESU. Du contrat au départ, vous êtes accompagné.",
   alternates: { canonical: "https://paie-et-dsn.fr/particuliers-employeurs" },
 };
 
@@ -13,7 +13,7 @@ const faq = [
   {
     question: "J'utilise le CESU, ai-je besoin de vous ?",
     reponse:
-      "Le CESU simplifie la déclaration, pas le droit du travail. Congés payés, majorations, jours fériés, absences, prime conventionnelle : le calcul des éléments à déclarer reste à votre charge, tout comme le contrat de travail et les documents de fin de contrat. Nous préparons ces calculs et documents pour vous, que vous déclariez via le CESU ou par le circuit classique.",
+      "Le CESU simplifie la déclaration, pas le droit du travail. Congés payés, majorations, jours fériés, absences, prime conventionnelle : le calcul des éléments à déclarer reste à votre charge, tout comme le contrat de travail et les documents de fin de contrat. Nous préparons ces calculs et documents pour vous ; la déclaration au CESU reste effectuée par vos soins, en quelques minutes, avec des chiffres justes.",
   },
   {
     question: "Quelle convention collective s'applique à mon salarié ?",
@@ -69,24 +69,27 @@ export default function ParticuliersEmployeurs() {
             survient.
           </p>
           <p>
-            Notre cabinet vous fait passer devant le problème. Nous établissons
-            les bulletins conformes à la convention, calculons congés,
-            majorations et indemnités, préparons vos déclarations, que vous
-            utilisiez le CESU ou le circuit déclaratif classique, et gérons
-            l&apos;embauche comme la fin de contrat avec tous les documents
-            obligatoires. Vous restez l&apos;employeur ; nous sommes votre
-            service paie.
+            Notre cabinet vous fait passer devant le problème. Nous calculons
+            chaque mois les éléments de votre salarié (salaire, congés payés,
+            majorations et indemnités conformes à la convention), préparons le
+            contrat de travail, ses avenants et tous les documents
+            obligatoires, et vous remettons les chiffres exacts à reporter
+            dans votre déclaration CESU, que vous effectuez vous-même en
+            quelques minutes. Vous restez l&apos;employeur et le déclarant ;
+            nous sommes votre appui.
           </p>
 
           <h2 className="pt-2 text-2xl font-bold">
             Ce qui est inclus pour un particulier employeur
           </h2>
           <p>
-            Le bulletin mensuel de votre salarié, le calcul des congés payés et
-            des majorations conventionnelles, la préparation des éléments à
-            déclarer, le suivi des évolutions du salaire minimum conventionnel,
-            et l&apos;accompagnement des moments sensibles : embauche, arrêt de
-            travail, fin de contrat. Le tout pour un forfait mensuel simple,
+            Le calcul mensuel des éléments de paie de votre salarié (salaire,
+            congés payés, majorations conventionnelles), les chiffres prêts à
+            reporter dans votre déclaration CESU, le contrat de travail et ses
+            avenants, le suivi des évolutions du salaire minimum
+            conventionnel, et l&apos;accompagnement des moments sensibles :
+            embauche, arrêt de travail, fin de contrat avec le calcul des
+            indemnités et les documents obligatoires. Le tout pour un forfait mensuel simple,
             estimable en quelques secondes avec notre{" "}
             <a
               href="/#tarifs"

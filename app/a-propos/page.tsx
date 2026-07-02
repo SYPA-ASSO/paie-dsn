@@ -116,7 +116,7 @@ export default function APropos() {
             <h2 className="text-2xl font-bold sm:text-3xl">
               Nos autres solutions pour les employeurs
             </h2>
-            <p className="mt-4 max-w-2xl leading-relaxed">
+            <p className="mt-4 leading-relaxed">
               La paie révèle souvent d&apos;autres besoins. Le cabinet y répond
               par deux voies : une option d&apos;abonnement à la{" "}
               <a
@@ -130,7 +130,7 @@ export default function APropos() {
               en qualité de courtier immatriculé à l&apos;ORIAS
               (n°&nbsp;26003943), sous le contrôle de l&apos;ACPR.
             </p>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-10 grid gap-6 sm:grid-cols-2">
               {assurances.map((a) => (
                 <article
                   key={a.titre}
