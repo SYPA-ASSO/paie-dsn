@@ -1,0 +1,31 @@
+name: Mise a jour liste IDCC
+
+on:
+  schedule:
+    - cron: "0 6 1 * *" # le 1er de chaque mois a 6h UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  maj:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install xlsx --no-save --no-audit --no-fund
+      - run: node scripts/maj-idcc.mjs
+      - name: Commit si changement
+        run: |
+          if [ -n "$(git status --porcelain data/idcc.json)" ]; then
+            git config user.name "github-actions"
+            git config user.email "actions@github.com"
+            git add data/idcc.json
+            git commit -m "maj: liste officielle des conventions collectives"
+            git push
+          else
+            echo "Aucun changement a committer."
+          fi
