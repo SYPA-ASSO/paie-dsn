@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 type Organisation = { id: string; nom: string };
-type Utilisateur = { user_id: string; nom: string | null; role: string; organisation_id: string | null };
+type Utilisateur = { user_id: string; nom: string | null; role: string; organisation_id: string | null; email?: string | null };
 
 const champ = "mt-1 w-full rounded-lg border border-line bg-ivory px-3 py-2 text-sm";
 const etiquette = "block text-sm font-semibold text-navy";
@@ -144,7 +144,7 @@ export default function AdminPanel({
               .filter((u) => u.role !== "admin")
               .map((u) => (
                 <option key={u.user_id} value={u.user_id}>
-                  {u.nom ?? u.user_id.slice(0, 8)} ({u.role})
+                  {u.nom ?? u.email ?? u.user_id.slice(0, 8)} ({u.role})
                 </option>
               ))}
           </select>
