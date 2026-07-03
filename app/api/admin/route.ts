@@ -27,6 +27,9 @@ export async function POST(requete: Request) {
       const { error } = await service.from("organisations").insert({
         nom,
         siret: String(donnees.get("siret") ?? "").trim() || null,
+        offre_paie: donnees.get("offre_paie") === "on",
+        offre_essentiel: donnees.get("offre_essentiel") === "on",
+        offre_copilote: donnees.get("offre_copilote") === "on",
       });
       if (error) throw error;
       return NextResponse.json({ ok: true });
@@ -77,6 +80,30 @@ export async function POST(requete: Request) {
         type,
         periode,
         titre,
+        chemin,
+      });
+      if (error) throw error;
+      return NextResponse.json({ ok: true });
+    }
+
+    if (action === "ressource") {
+      const fichier = donnees.get("fichier");
+      const typeRessource = String(donnees.get("type_ressource") ?? "");
+      const acces = String(donnees.get("acces") ?? "essentiel");
+      if (!(fichier instanceof File) || !typeRessource) {
+        throw new Error("Fichier et type de ressource requis.");
+      }
+      const titre = String(donnees.get("titre") ?? "").trim() || fichier.name;
+      const chemin = `ressources/${Date.now()}-${fichier.name.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
+      const { error: erreurStockage } = await service.storage
+        .from("documents")
+        .upload(chemin, fichier, { contentType: fichier.type || "application/octet-stream" });
+      if (erreurStockage) throw erreurStockage;
+      const { error } = await service.from("ressources").insert({
+        titre,
+        categorie: String(donnees.get("categorie") ?? "").trim() || null,
+        type_ressource: typeRessource,
+        acces,
         chemin,
       });
       if (error) throw error;

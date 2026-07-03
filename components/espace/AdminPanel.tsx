@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-type Organisation = { id: string; nom: string };
+type Organisation = { id: string; nom: string; offre_paie?: boolean; offre_essentiel?: boolean; offre_copilote?: boolean };
 type Utilisateur = { user_id: string; nom: string | null; role: string; organisation_id: string | null; email?: string | null };
 
 const champ = "mt-1 w-full rounded-lg border border-line bg-ivory px-3 py-2 text-sm";
@@ -55,6 +55,19 @@ export default function AdminPanel({
         <label className={`mt-3 ${etiquette}`}>
           SIRET
           <input name="siret" className={champ} />
+        </label>
+        <p className={`mt-3 ${etiquette}`}>Offres souscrites</p>
+        <label className="mt-1 flex items-center gap-2 text-sm">
+          <input type="checkbox" name="offre_paie" className="h-4 w-4 accent-[#00a878]" />
+          Gestion de paie
+        </label>
+        <label className="mt-1 flex items-center gap-2 text-sm">
+          <input type="checkbox" name="offre_essentiel" className="h-4 w-4 accent-[#00a878]" />
+          L&apos;Essentiel Social
+        </label>
+        <label className="mt-1 flex items-center gap-2 text-sm">
+          <input type="checkbox" name="offre_copilote" className="h-4 w-4 accent-[#00a878]" />
+          Le Copilote Social
         </label>
         <button className="mt-4 w-full rounded-full bg-navy px-4 py-2 text-sm font-semibold text-white">
           Créer
@@ -129,6 +142,7 @@ export default function AdminPanel({
             <option value="facture">Facture</option>
             <option value="mandat">Mandat tiers déclarant</option>
             <option value="justificatif">Justificatif</option>
+            <option value="archive">Archive mensuelle (zip)</option>
             <option value="autre">Autre</option>
           </select>
         </label>
@@ -159,6 +173,55 @@ export default function AdminPanel({
         </label>
         <button className="mt-4 w-full rounded-full bg-emerald-brand px-4 py-2 text-sm font-semibold text-white">
           Déposer
+        </button>
+      </form>
+      <form
+        onSubmit={(e) => envoyer(e, "Ressource déposée")}
+        className="rounded-2xl border border-line bg-white p-5 lg:col-span-3"
+      >
+        <h2 className="font-bold text-navy">
+          Déposer une ressource documentaire (abonnements)
+        </h2>
+        <div className="mt-3 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <input type="hidden" name="action" value="ressource" />
+          <label className={etiquette}>
+            Titre&nbsp;*
+            <input name="titre" required className={champ} />
+          </label>
+          <label className={etiquette}>
+            Catégorie
+            <input
+              name="categorie"
+              placeholder="Ex. Contrats, Discipline, Congés..."
+              className={champ}
+            />
+          </label>
+          <label className={etiquette}>
+            Type&nbsp;*
+            <select name="type_ressource" required className={champ}>
+              <option value="modele">Modèle de document</option>
+              <option value="jurisprudence">Jurisprudence commentée</option>
+              <option value="dossier">Dossier de synthèse</option>
+              <option value="procedure">Procédure RH</option>
+              <option value="outil">Outil de gestion</option>
+              <option value="newsletter">Newsletter</option>
+              <option value="autre">Autre</option>
+            </select>
+          </label>
+          <label className={etiquette}>
+            Accès&nbsp;*
+            <select name="acces" required className={champ}>
+              <option value="essentiel">Essentiel + Copilote</option>
+              <option value="copilote">Copilote uniquement</option>
+            </select>
+          </label>
+          <label className={etiquette}>
+            Fichier&nbsp;*
+            <input name="fichier" type="file" required className={champ} />
+          </label>
+        </div>
+        <button className="mt-4 rounded-full bg-emerald-brand px-6 py-2 text-sm font-semibold text-white">
+          Déposer la ressource
         </button>
       </form>
     </div>

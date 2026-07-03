@@ -50,7 +50,7 @@ export default function NotrePerimetre() {
             Ce que nous ne faisons pas, et pourquoi
           </h2>
           <p>
-            <strong>Aucun travail comptable.</strong> La tenue, la
+            <strong>Aucun travail comptable.</strong>{" "}La tenue, la
             centralisation et la révision des comptabilités sont réservées aux
             experts-comptables par l&apos;ordonnance n°&nbsp;45-2138 du 19
             septembre 1945. La production de la paie n&apos;en fait pas partie,
@@ -62,7 +62,7 @@ export default function NotrePerimetre() {
             complémentaires, pas concurrents.
           </p>
           <p>
-            <strong>Aucun conseil juridique détaché de la paie.</strong> La
+            <strong>Aucun conseil juridique détaché de la paie.</strong>{" "}La
             consultation juridique personnalisée est encadrée par la loi
             n°&nbsp;71-1130 du 31 décembre 1971. Son article 60 nous autorise à
             vous conseiller sur ce qui relève directement de notre activité

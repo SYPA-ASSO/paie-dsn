@@ -60,7 +60,7 @@ export default async function EspaceSalarie() {
             {bulletins.map((b) => (
               <li key={b.id} className="flex items-center justify-between gap-3 px-4 py-3">
                 <span className="text-sm font-medium text-navy">
-                  {b.titre} {b.periode ? `· ${b.periode}` : ""}
+                  {b.titre}{" "}{b.periode ? `· ${b.periode}` : ""}
                 </span>
                 <a
                   href={`/api/documents/${b.id}`}

@@ -26,6 +26,7 @@ const libellesTypes: Record<string, string> = {
   facture: "Facture",
   mandat: "Mandat",
   justificatif: "Justificatif",
+  archive: "Archive (zip)",
   autre: "Autre",
 };
 
@@ -35,9 +36,9 @@ export default async function Admin() {
   if (!user || profil?.role !== "admin") redirect("/espace-client");
 
   const supabase = await clientServeur();
-  const [{ data: organisations }, { data: profils }, { data: documents }] =
+  const [{ data: organisations }, { data: profils }, { data: documents }, { data: ressources }] =
     await Promise.all([
-      supabase.from("organisations").select("id, nom, siret").order("nom"),
+      supabase.from("organisations").select("id, nom, siret, offre_paie, offre_essentiel, offre_copilote").order("nom"),
       supabase
         .from("profils")
         .select("user_id, nom, role, organisation_id")
@@ -46,6 +47,10 @@ export default async function Admin() {
         .from("documents")
         .select("id, titre, type, periode, organisation_id, salarie_user_id, cree_le")
         .order("periode", { ascending: false })
+        .order("cree_le", { ascending: false }),
+      supabase
+        .from("ressources")
+        .select("id, titre, categorie, type_ressource, acces")
         .order("cree_le", { ascending: false }),
     ]);
 
@@ -70,6 +75,12 @@ export default async function Admin() {
     email: emails.get(p.user_id) ?? null,
   }));
   const listeDocuments = documents ?? [];
+  const listeRessources = ressources ?? [];
+  const offres = [
+    { cle: "offre_paie" as const, libelle: "Gestion de paie" },
+    { cle: "offre_essentiel" as const, libelle: "L'Essentiel Social" },
+    { cle: "offre_copilote" as const, libelle: "Le Copilote Social" },
+  ];
   const nomUtilisateur = (id: string | null) => {
     if (!id) return "";
     const p = listeProfils.find((x) => x.user_id === id);
@@ -96,6 +107,87 @@ export default async function Admin() {
           organisations={listeOrganisations}
           utilisateurs={listeProfils}
         />
+
+        <section className="mt-12">
+          <h2 className="text-xl font-bold text-navy">
+            Répartition des dossiers clients par offre
+          </h2>
+          <div className="mt-4 grid gap-4 sm:grid-cols-3">
+            {offres.map((offre) => {
+              const dossiers = listeOrganisations.filter(
+                (o) => (o as Record<string, unknown>)[offre.cle]
+              );
+              return (
+                <div
+                  key={offre.cle}
+                  className="rounded-2xl border border-line bg-white p-5"
+                >
+                  <h3 className="font-bold text-navy">
+                    {offre.libelle}{" "}
+                    <span className="text-sm font-normal text-ink/60">
+                      ({dossiers.length})
+                    </span>
+                  </h3>
+                  {dossiers.length === 0 ? (
+                    <p className="mt-2 text-sm text-ink/70">Aucun dossier.</p>
+                  ) : (
+                    <ul className="mt-2 space-y-1 text-sm">
+                      {dossiers.map((o) => (
+                        <li key={o.id} className="font-medium text-navy">
+                          {o.nom}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="mt-12">
+          <h2 className="text-xl font-bold text-navy">
+            Espace documentaire ({listeRessources.length} ressource
+            {listeRessources.length > 1 ? "s" : ""})
+          </h2>
+          {listeRessources.length === 0 ? (
+            <p className="mt-2 text-sm text-ink/70">
+              Aucune ressource déposée pour le moment.
+            </p>
+          ) : (
+            <div className="mt-2 overflow-x-auto rounded-2xl border border-line bg-white p-4">
+              <table className="w-full min-w-[520px] text-left text-sm">
+                <thead>
+                  <tr className="border-b border-line text-xs uppercase tracking-wide text-ink/60">
+                    <th className="py-2 pr-3">Titre</th>
+                    <th className="py-2 pr-3">Type</th>
+                    <th className="py-2 pr-3">Catégorie</th>
+                    <th className="py-2 pr-3">Accès</th>
+                    <th className="py-2"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {listeRessources.map((r) => (
+                    <tr key={r.id} className="border-b border-line/60">
+                      <td className="py-2 pr-3 font-medium text-navy">{r.titre}</td>
+                      <td className="py-2 pr-3">{r.type_ressource}</td>
+                      <td className="py-2 pr-3">{r.categorie ?? ""}</td>
+                      <td className="py-2 pr-3">{r.acces}</td>
+                      <td className="py-2 text-right">
+                        <a
+                          href={`/api/ressources/${r.id}`}
+                          className="font-semibold text-emerald-deep underline"
+                        >
+                          Télécharger
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
 
         <section className="mt-12">
           <h2 className="text-xl font-bold text-navy">
@@ -132,13 +224,23 @@ export default async function Admin() {
                 key={org.id}
                 className="mt-4 rounded-2xl border border-line bg-white p-5"
               >
-                <h3 className="font-bold text-navy">
-                  {org.nom}{" "}
+                <h3 className="flex flex-wrap items-center gap-2 font-bold text-navy">
+                  {org.nom}
                   {org.siret && (
                     <span className="text-sm font-normal text-ink/60">
                       · SIRET {org.siret}
                     </span>
                   )}
+                  {offres
+                    .filter((offre) => (org as Record<string, unknown>)[offre.cle])
+                    .map((offre) => (
+                      <span
+                        key={offre.cle}
+                        className="rounded-full bg-emerald-tint px-2 py-0.5 text-xs font-semibold text-emerald-deep"
+                      >
+                        {offre.libelle}
+                      </span>
+                    ))}
                 </h3>
 
                 <p className="mt-3 text-sm font-semibold uppercase tracking-wide text-ink/60">

@@ -164,7 +164,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-line px-4 py-5 text-center text-xs text-ink/60">
-        © {new Date().getFullYear()} Cabinet Cholez-Pagotto · SIREN
+        © {new Date().getFullYear()}{" "}Cabinet Cholez-Pagotto · SIREN
         490&nbsp;889&nbsp;516 · Épinal · Tous droits réservés
       </div>
     </footer>

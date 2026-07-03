@@ -30,6 +30,7 @@ const libelles: Record<string, string> = {
   etat_charges: "État des charges",
   cr_dsn: "Comptes rendus DSN",
   justificatif: "Justificatifs",
+  archive: "Archive mensuelle (zip)",
   autre: "Autres documents",
 };
 
@@ -40,6 +41,16 @@ export default async function EspaceEmployeur() {
   if (profil.role !== "employeur") redirect("/espace-client");
 
   const supabase = await clientServeur();
+  const { data: organisation } = profil.organisation_id
+    ? await supabase
+        .from("organisations")
+        .select("offre_essentiel, offre_copilote")
+        .eq("id", profil.organisation_id)
+        .single()
+    : { data: null };
+  const abonne = Boolean(
+    organisation?.offre_essentiel || organisation?.offre_copilote
+  );
   const { data } = await supabase
     .from("documents")
     .select("id, type, periode, titre, cree_le")
@@ -69,6 +80,19 @@ export default async function EspaceEmployeur() {
           </div>
           <Deconnexion />
         </div>
+
+        {abonne && (
+          <a
+            href="/espace-client/ressources"
+            className="mt-8 block rounded-2xl border-2 border-emerald-brand bg-emerald-tint p-5 transition hover:shadow-md"
+          >
+            <p className="font-bold text-navy">Votre espace documentaire d&apos;abonné</p>
+            <p className="mt-1 text-sm">
+              Modèles de documents, jurisprudences commentées, dossiers, procédures et
+              outils : accédez à vos ressources.
+            </p>
+          </a>
+        )}
 
         <section className="mt-8">
           <h2 className="text-lg font-bold text-navy">Votre mandat de tiers déclarant</h2>
