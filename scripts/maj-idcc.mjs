@@ -11,7 +11,18 @@
 // Les conventions fusionnees utiles au maillage du site restent gerees via
 // data/idcc-fusions.json.
 //
-// Execution locale : npm install xlsx --no-save && node scripts/maj-idcc.mjs
+// IMPORTANT (juillet 2026) : le site du ministere est protege par un captcha
+// anti-robots (Cegedim). Le telechargement automatique echoue donc. PROCEDURE
+// MANUELLE MENSUELLE (5 minutes) :
+//   1. Ouvrir dans un navigateur :
+//      https://travail-emploi.gouv.fr/conventions-collectives-nomenclatures
+//   2. Telecharger "Fichier de suivi historique des conventions collectives" (xlsx)
+//   3. node scripts/maj-idcc.mjs "C:/chemin/vers/le-fichier.xlsx"
+//   4. git add data/idcc.json && git status && git commit -m "maj: referentiel IDCC" && git push
+// Le script tente aussi le telechargement direct (au cas ou la protection
+// serait levee un jour), et une automatisation via l'API Legifrance (PISTE)
+// pourra etre branchee si le cabinet cree des identifiants gratuits sur
+// piste.gouv.fr (me le demander).
 
 import { writeFileSync, readFileSync } from "node:fs";
 import * as XLSX from "xlsx";
@@ -68,7 +79,13 @@ async function trouverUrlXlsx() {
       derniereErreur = erreur;
     }
   }
-  throw new Error(`Aucun fichier xlsx localise. Derniere erreur : ${derniereErreur}`);
+  throw new Error(
+    "Telechargement automatique impossible (le site du ministere est protege par un captcha). " +
+      "Procedure manuelle : telecharger le Fichier de suivi historique depuis " +
+      "https://travail-emploi.gouv.fr/conventions-collectives-nomenclatures puis executer " +
+      "node scripts/maj-idcc.mjs <chemin-du-fichier.xlsx>. Derniere erreur : " +
+      derniereErreur
+  );
 }
 
 function detecterColonnes(lignes) {
@@ -81,8 +98,15 @@ function detecterColonnes(lignes) {
     );
     if (colIdcc >= 0 && colTitre >= 0) {
       const colFin = entetes.findIndex((e) => e.includes("FIN"));
-      const colEtat = entetes.findIndex((e) => e.includes("ETAT") || e.includes("STATUT"));
-      const colNature = entetes.findIndex((e) => e.includes("NATURE") || e === "TYPE" || e.includes("TYPE DE"));
+      const colEtat = entetes.findIndex(
+        (e) => !e.includes("DATE") && (e.includes("ETAT") || e.includes("STATUT"))
+      );
+      const colNature = entetes.findIndex(
+        (e) =>
+          !e.includes("DATE") &&
+          !e.includes("SIGNATURE") &&
+          (e.includes("NATURE") || e === "TYPE" || e.includes("TYPE DE"))
+      );
       console.log(
         `En-tetes ligne ${i + 1} : idcc=${entetes[colIdcc]}, titre=${entetes[colTitre]},` +
           ` fin=${colFin >= 0 ? entetes[colFin] : "absent"}, etat=${colEtat >= 0 ? entetes[colEtat] : "absent"},` +
@@ -109,12 +133,35 @@ function extraireConventions(classeur) {
     let exclusFin = 0;
     let exclusEtat = 0;
     let exclusNature = 0;
+    let exclusForme = 0;
+
+    const nettoyer = (valeur) =>
+      String(valeur ?? "")
+        .replace(/[\u00a0\u200b\ufeff]/g, " ")
+        .trim();
+
+    // Diagnostic : apercu des 3 premieres lignes de donnees
+    for (let d = 1; d <= 3; d++) {
+      const apercu = lignes[colonnes.ligneEntetes + d];
+      if (apercu) {
+        console.log(
+          `  Apercu ligne ${colonnes.ligneEntetes + d + 1} : idcc=${JSON.stringify(apercu[colonnes.colIdcc])}` +
+            ` titre=${JSON.stringify(String(apercu[colonnes.colTitre] ?? "").slice(0, 60))}` +
+            (colonnes.colFin >= 0 ? ` fin=${JSON.stringify(apercu[colonnes.colFin])}` : "")
+        );
+      }
+    }
 
     for (let i = colonnes.ligneEntetes + 1; i < lignes.length; i++) {
       const ligne = lignes[i];
-      const idccBrut = String(ligne[colonnes.colIdcc] ?? "").trim();
-      const titre = String(ligne[colonnes.colTitre] ?? "").trim();
-      if (!/^\d{1,4}$/.test(idccBrut) || !titre) continue;
+      // Les IDCC du fichier Dares sont ecrits sur 5 chiffres ("00016") :
+      // on accepte 1 a 5 chiffres et on normalise sur 4 (padStart apres parseInt).
+      const idccBrut = nettoyer(ligne[colonnes.colIdcc]).replace(/\.0+$/, "");
+      const titre = nettoyer(ligne[colonnes.colTitre]);
+      if (!/^\d{1,5}$/.test(idccBrut) || !titre) {
+        if (idccBrut || titre) exclusForme++;
+        continue;
+      }
 
       if (colonnes.colFin >= 0 && String(ligne[colonnes.colFin] ?? "").trim() !== "") {
         exclusFin++;
@@ -140,7 +187,7 @@ function extraireConventions(classeur) {
         }
       }
 
-      const idcc = idccBrut.padStart(4, "0");
+      const idcc = String(parseInt(idccBrut, 10)).padStart(4, "0");
       if (!parIdcc.has(idcc)) {
         parIdcc.set(idcc, { idcc, titre, statut: "en_vigueur" });
       }
@@ -148,22 +195,42 @@ function extraireConventions(classeur) {
 
     console.log(
       `Feuille "${nomFeuille}" : ${parIdcc.size} conventions retenues` +
-        ` (exclus : ${exclusFin} terminees, ${exclusEtat} hors vigueur, ${exclusNature} autres natures).`
+        ` (exclus : ${exclusFin} terminees, ${exclusEtat} hors vigueur, ${exclusNature} autres natures, ${exclusForme} formes invalides).`
     );
-    if (parIdcc.size > meilleur.length) meilleur = [...parIdcc.values()];
+    // Priorite absolue a la feuille dont le nom contient "convention" :
+    // la feuille "Accords et statuts" ne doit jamais alimenter la liste.
+    const feuilleConvention = normaliser(nomFeuille).includes("CONVENTION");
+    const meilleureEstConvention = meilleur.feuilleConvention === true;
+    if (
+      (feuilleConvention && !meilleureEstConvention) ||
+      (feuilleConvention === meilleureEstConvention && parIdcc.size > meilleur.length)
+    ) {
+      meilleur = [...parIdcc.values()];
+      meilleur.feuilleConvention = feuilleConvention;
+    }
   }
   return meilleur;
 }
 
 async function principal() {
-  const urlXlsx = await trouverUrlXlsx();
-  console.log("Fichier officiel :", urlXlsx);
-  const fichier = await fetch(urlXlsx, {
-    headers: { "User-Agent": "Mozilla/5.0 (paie-et-dsn.fr referentiel IDCC)" },
-    redirect: "follow",
-  });
-  if (!fichier.ok) throw new Error(`Telechargement impossible : HTTP ${fichier.status}`);
-  const tampon = Buffer.from(await fichier.arrayBuffer());
+  let tampon;
+  let source;
+  const cheminLocal = process.argv[2];
+  if (cheminLocal) {
+    console.log("Fichier local fourni :", cheminLocal);
+    tampon = readFileSync(cheminLocal);
+    source = "Fichier de suivi historique des conventions collectives (Dares/DG Travail), telecharge manuellement depuis travail-emploi.gouv.fr";
+  } else {
+    const urlXlsx = await trouverUrlXlsx();
+    console.log("Fichier officiel :", urlXlsx);
+    const fichier = await fetch(urlXlsx, {
+      headers: { "User-Agent": "Mozilla/5.0 (paie-et-dsn.fr referentiel IDCC)" },
+      redirect: "follow",
+    });
+    if (!fichier.ok) throw new Error(`Telechargement impossible : HTTP ${fichier.status}`);
+    tampon = Buffer.from(await fichier.arrayBuffer());
+    source = `${urlXlsx} (Dares/DG Travail)`;
+  }
   const classeur = XLSX.read(tampon);
   console.log("Feuilles :", classeur.SheetNames.join(", "));
 
@@ -193,7 +260,7 @@ async function principal() {
     "data/idcc.json",
     JSON.stringify(
       {
-        source: `${urlXlsx} (fichier de suivi historique Dares/DG Travail)`,
+        source,
         derniereMiseAJour: new Date().toISOString().slice(0, 10),
         conventions,
       },

@@ -64,6 +64,19 @@ git push -u origin main
    - conserver les serveurs de noms Hostinger (pas de changement de nameservers necessaire)
    - propagation DNS : quelques minutes a 24 h ; Vercel emet le certificat SSL automatiquement
 
+## Mise a jour mensuelle du referentiel des conventions collectives (5 minutes)
+
+Le fichier officiel (Dares/DG Travail) est protege par un captcha : le telechargement
+se fait a la main, le script fait tout le reste.
+1. Ouvrir https://travail-emploi.gouv.fr/conventions-collectives-nomenclatures
+2. Telecharger "Fichier de suivi historique des conventions collectives" (xlsx)
+3. Dans PowerShell, a la racine du projet :
+   npm install xlsx --no-save
+   node scripts/maj-idcc.mjs "C:/Users/chole/Downloads/nom-du-fichier.xlsx"
+4. Verifier le nombre de conventions annonce (attendu : entre 300 et 2000),
+   puis git add data/idcc.json, git status, git commit -m "maj: referentiel IDCC", git push.
+Automatisation possible plus tard via l'API Legifrance (PISTE, identifiants gratuits a creer).
+
 ## Espace client (Supabase dedie, separe de la Docutheque)
 
 1. Creer un NOUVEAU projet sur supabase.com (region UE), distinct de celui de la Docutheque.

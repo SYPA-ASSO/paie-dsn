@@ -1,8 +1,8 @@
 name: Mise a jour liste IDCC
 
 on:
-  schedule:
-    - cron: "0 6 1 * *" # le 1er de chaque mois a 6h UTC
+  # Cron desactive : la source officielle est protegee par un captcha,
+  # la mise a jour mensuelle est manuelle (voir scripts/maj-idcc.mjs).
   workflow_dispatch: {}
 
 permissions:
