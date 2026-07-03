@@ -8,6 +8,15 @@ type Utilisateur = { user_id: string; nom: string | null; role: string; organisa
 const champ = "mt-1 w-full rounded-lg border border-line bg-ivory px-3 py-2 text-sm";
 const etiquette = "block text-sm font-semibold text-navy";
 
+const actions = [
+  { cle: "organisation", libelle: "+ Organisation" },
+  { cle: "utilisateur", libelle: "+ Utilisateur" },
+  { cle: "document", libelle: "+ Document" },
+  { cle: "ressource", libelle: "+ Ressource documentaire" },
+] as const;
+
+type CleAction = (typeof actions)[number]["cle"];
+
 export default function AdminPanel({
   organisations,
   utilisateurs,
@@ -16,6 +25,7 @@ export default function AdminPanel({
   utilisateurs: Utilisateur[];
 }) {
   const [message, setMessage] = useState("");
+  const [ouvert, setOuvert] = useState<CleAction | null>(null);
 
   async function envoyer(e: React.FormEvent<HTMLFormElement>, libelle: string) {
     e.preventDefault();
@@ -35,13 +45,40 @@ export default function AdminPanel({
   }
 
   return (
-    <div className="mt-8 grid gap-6 lg:grid-cols-3">
+    <div className="mt-8">
+      <div className="flex flex-wrap items-center gap-3">
+        {actions.map((action) => (
+          <button
+            key={action.cle}
+            type="button"
+            onClick={() => setOuvert(ouvert === action.cle ? null : action.cle)}
+            className={
+              ouvert === action.cle
+                ? "rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-white"
+                : "rounded-full border border-line bg-white px-5 py-2.5 text-sm font-semibold text-navy transition hover:border-emerald-brand/50"
+            }
+          >
+            {action.libelle}
+          </button>
+        ))}
+        {ouvert && (
+          <button
+            type="button"
+            onClick={() => setOuvert(null)}
+            className="text-sm font-semibold text-ink/60 underline"
+          >
+            Fermer
+          </button>
+        )}
+      </div>
+
       {message && (
-        <p className="lg:col-span-3 rounded-xl bg-emerald-tint p-3 text-sm font-semibold text-emerald-deep">
+        <p className="mt-4 rounded-xl bg-emerald-tint p-3 text-sm font-semibold text-emerald-deep">
           {message}
         </p>
       )}
 
+      <div className={ouvert === "organisation" ? "mt-6 max-w-md" : "hidden"}>
       <form
         onSubmit={(e) => envoyer(e, "Organisation créée")}
         className="rounded-2xl border border-line bg-white p-5"
@@ -73,7 +110,9 @@ export default function AdminPanel({
           Créer
         </button>
       </form>
+      </div>
 
+      <div className={ouvert === "utilisateur" ? "mt-6 max-w-md" : "hidden"}>
       <form
         onSubmit={(e) => envoyer(e, "Utilisateur créé")}
         className="rounded-2xl border border-line bg-white p-5"
@@ -115,7 +154,9 @@ export default function AdminPanel({
           Créer
         </button>
       </form>
+      </div>
 
+      <div className={ouvert === "document" ? "mt-6 max-w-md" : "hidden"}>
       <form
         onSubmit={(e) => envoyer(e, "Document déposé")}
         className="rounded-2xl border border-line bg-white p-5"
@@ -175,9 +216,12 @@ export default function AdminPanel({
           Déposer
         </button>
       </form>
+      </div>
+
+      <div className={ouvert === "ressource" ? "mt-6" : "hidden"}>
       <form
         onSubmit={(e) => envoyer(e, "Ressource déposée")}
-        className="rounded-2xl border border-line bg-white p-5 lg:col-span-3"
+        className="rounded-2xl border border-line bg-white p-5"
       >
         <h2 className="font-bold text-navy">
           Déposer une ressource documentaire (abonnements)
@@ -224,6 +268,7 @@ export default function AdminPanel({
           Déposer la ressource
         </button>
       </form>
+      </div>
     </div>
   );
 }
