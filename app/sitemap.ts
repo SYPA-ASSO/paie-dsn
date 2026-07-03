@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "https://paie-et-dsn.fr/veille-sociale-rh", lastModified: new Date(), changeFrequency: "yearly", priority: 0.6 },
     { url: "https://paie-et-dsn.fr/a-propos", lastModified: new Date(), changeFrequency: "yearly", priority: 0.6 },
     { url: "https://paie-et-dsn.fr/contact", lastModified: new Date(), changeFrequency: "yearly", priority: 0.8 },
+    { url: "https://paie-et-dsn.fr/comprendre-bulletin-de-paie", lastModified: new Date(), changeFrequency: "yearly", priority: 0.7 },
     { url: "https://paie-et-dsn.fr/blog", lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
   ];
   for (const article of articles) {

@@ -98,6 +98,14 @@ export default function Footer() {
               </Link>
             </li>
             <li>
+              <Link
+                href="/comprendre-bulletin-de-paie"
+                className="hover:text-emerald-deep"
+              >
+                Comprendre votre bulletin de paie
+              </Link>
+            </li>
+            <li>
               <Link href="/blog" className="hover:text-emerald-deep">
                 Blog
               </Link>
@@ -112,6 +120,11 @@ export default function Footer() {
             <li>
               <Link href="/a-propos" className="hover:text-emerald-deep">
                 À propos et autres solutions
+              </Link>
+            </li>
+            <li>
+              <Link href="/espace-client" className="hover:text-emerald-deep">
+                Espace client
               </Link>
             </li>
             <li>

@@ -38,7 +38,9 @@ export default function NotrePerimetre() {
             de tout compte, certificat de travail, attestation France Travail)
             de vos salariés, et vous remet chaque mois le journal de paie,
             l&apos;état des charges et les données destinées à votre
-            expert-comptable. Nous répondons également à toutes vos questions
+            expert-comptable. La veille sociale et conventionnelle est incluse
+            et appliquée automatiquement à vos bulletins : SMIC, plafonds,
+            taux de cotisations, évolutions de votre convention. Nous répondons également à toutes vos questions
             directement liées à l&apos;exécution de votre paie : traitement
             d&apos;un arrêt de travail, calcul d&apos;une indemnité,
             application d&apos;une prime conventionnelle.
@@ -87,7 +89,7 @@ export default function NotrePerimetre() {
             .
           </p>
 
-          <div className="mt-8 rounded-2xl bg-emerald-tint p-6">
+          <div className="mt-8 rounded-2xl bg-emerald-tint p-6 text-center">
             <p className="font-semibold text-navy">
               Une question sur une situation précise ?
             </p>

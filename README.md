@@ -64,6 +64,22 @@ git push -u origin main
    - conserver les serveurs de noms Hostinger (pas de changement de nameservers necessaire)
    - propagation DNS : quelques minutes a 24 h ; Vercel emet le certificat SSL automatiquement
 
+## Espace client (Supabase dedie, separe de la Docutheque)
+
+1. Creer un NOUVEAU projet sur supabase.com (region UE), distinct de celui de la Docutheque.
+2. SQL Editor : executer l'integralite de supabase/schema.sql.
+3. Storage : creer un bucket PRIVE nomme exactement "documents".
+4. Vercel > Settings > Environment Variables (puis Redeploy) :
+   - NEXT_PUBLIC_SUPABASE_URL (Project Settings > API)
+   - NEXT_PUBLIC_SUPABASE_ANON_KEY
+   - SUPABASE_SERVICE_ROLE_KEY (secret, jamais expose au navigateur)
+5. Amorcage du premier admin (une seule fois) : Supabase > Authentication > Add user
+   (email + mot de passe), puis SQL Editor :
+   insert into profils (user_id, role, nom) values ('<uuid de l utilisateur>', 'admin', 'Francois');
+6. Se connecter sur /espace-client avec ce compte : redirection vers /admin, ou creer
+   organisations, comptes employeurs/salaries, et deposer les documents.
+Tant que les variables ne sont pas posees, /espace-client affiche "ouvre prochainement".
+
 ## A faire avant mise en ligne (champs [a completer] dans les pages legales)
 
 - [ ] Creer l'adresse contact@paie-et-dsn.fr chez Hostinger (utilisee partout sur le site)

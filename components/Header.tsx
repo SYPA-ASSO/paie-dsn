@@ -8,6 +8,7 @@ const ressources = [
   { href: "/mandat-tiers-declarant", label: "Mandat de tiers déclarant" },
   { href: "/notre-perimetre", label: "Notre périmètre d'intervention" },
   { href: "/veille-sociale-rh", label: "Veille sociale et RH" },
+  { href: "/comprendre-bulletin-de-paie", label: "Comprendre votre bulletin" },
   { href: "/blog", label: "Blog" },
 ];
 
@@ -83,6 +84,12 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <a
+            href="/espace-client"
+            className="hidden rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-navy transition hover:border-emerald-brand/50 md:inline-block"
+          >
+            Espace client
+          </a>
           <a
             href="/contact"
             className="hidden rounded-full bg-emerald-brand px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-deep sm:inline-block"
@@ -171,6 +178,15 @@ export default function Header() {
               </Link>
             </li>
             <li className="pt-3">
+              <a
+                href="/espace-client"
+                onClick={() => setMenuOuvert(false)}
+                className="block rounded-full border border-line bg-white px-4 py-3 text-center font-semibold text-navy"
+              >
+                Espace client
+              </a>
+            </li>
+            <li className="pt-2">
               <a
                 href="/contact"
                 onClick={() => setMenuOuvert(false)}

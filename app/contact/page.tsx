@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import FormulaireContact from "@/components/FormulaireContact";
 
 export const metadata: Metadata = {
-  title: "Contact : demandez votre devis de paie externalisée",
+  title: "Contactez le cabinet : devis, abonnements, assurances, partenariats",
   description:
     "Contactez le cabinet via le formulaire : devis de paie externalisée, particulier employeur, abonnements veille sociale, assurances de l'employeur, partenariats. Réponse sous 48 heures.",
   alternates: { canonical: "https://paie-et-dsn.fr/contact" },
@@ -40,12 +40,13 @@ export default function Contact() {
           Contact
         </p>
         <h1 className="mt-2 text-3xl font-bold sm:text-4xl">
-          Parlons de votre paie
+          Contactez le cabinet
         </h1>
         <p className="mt-5 text-lg leading-relaxed">
-          Sélectionnez votre demande et décrivez votre situation : nous vous
-          répondons sous 48&nbsp;heures ouvrées avec, selon le cas, un devis
-          détaillé ou la bonne orientation. Aucune demande ne reste sans
+          Devis de paie, abonnements, assurances, partenariat ou toute autre
+          demande : sélectionnez votre sujet et décrivez votre situation. Nous
+          vous répondons sous 48&nbsp;heures ouvrées, avec selon le cas un
+          devis détaillé ou la bonne orientation. Aucune demande ne reste sans
           réponse.
         </p>
 
@@ -53,21 +54,7 @@ export default function Contact() {
           <FormulaireContact />
         </div>
 
-        <div className="mt-8 rounded-2xl bg-navy p-6 text-white sm:p-8">
-          <p className="text-sm font-bold uppercase tracking-wide text-amber-brand">
-            Le cabinet
-          </p>
-          <p className="mt-2 font-semibold">
-            Cabinet Cholez-Pagotto · 12 rue d&apos;Olima, 88000 Épinal
-          </p>
-          <p className="mt-1 text-sm text-white/80">
-            Les échanges s&apos;effectuent via le formulaire ci-dessus, qui
-            nous parvient immédiatement et nous permet de vous répondre avec
-            votre dossier déjà qualifié.
-          </p>
-        </div>
-
-        <p className="mt-6 text-xs leading-relaxed text-ink/70">
+                <p className="mt-6 text-xs leading-relaxed text-ink/70">
           Les données transmises via ce formulaire sont utilisées uniquement
           pour traiter votre demande et, le cas échéant, établir un devis,
           conformément à notre politique de confidentialité. Aucune donnée

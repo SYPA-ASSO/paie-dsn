@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/espace-client", "/admin", "/api/"],
     },
     sitemap: "https://paie-et-dsn.fr/sitemap.xml",
   };
