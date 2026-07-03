@@ -137,14 +137,14 @@ export default function AdminPanel({
           <input name="periode" placeholder="2026-07" className={champ} />
         </label>
         <label className={`mt-3 ${etiquette}`}>
-          Salarié destinataire (bulletins uniquement)
+          Destinataire du bulletin (salarié ou dirigeant)
           <select name="salarie_user_id" className={champ}>
             <option value="">Aucun</option>
             {utilisateurs
-              .filter((u) => u.role === "salarie")
+              .filter((u) => u.role !== "admin")
               .map((u) => (
                 <option key={u.user_id} value={u.user_id}>
-                  {u.nom ?? u.user_id.slice(0, 8)}
+                  {u.nom ?? u.user_id.slice(0, 8)} ({u.role})
                 </option>
               ))}
           </select>
