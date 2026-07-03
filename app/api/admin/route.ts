@@ -85,7 +85,10 @@ export async function POST(requete: Request) {
 
     throw new Error("Action inconnue.");
   } catch (e) {
-    const message = e instanceof Error ? e.message : "Erreur inattendue.";
+    console.error("Erreur admin :", e);
+    const message =
+      (e as { message?: string })?.message ??
+      (typeof e === "string" ? e : "Erreur inattendue.");
     return NextResponse.json({ erreur: message }, { status: 400 });
   }
 }
