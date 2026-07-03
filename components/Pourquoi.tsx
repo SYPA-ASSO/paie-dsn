@@ -27,13 +27,15 @@ export default function Pourquoi() {
           Externaliser plutôt que s&apos;équiper
         </p>
         <h2 className="mt-2 text-3xl font-bold sm:text-4xl">
-          Un logiciel de paie ne répond pas au téléphone
+          Pourquoi externaliser votre paie plutôt que gérer un logiciel ?
         </h2>
         <p className="mt-4 text-lg leading-relaxed">
           Les logiciels de paie en ligne sont de bons outils, à condition
-          d&apos;avoir le temps et les compétences pour les piloter. Si la paie
-          n&apos;est pas votre métier, la déléguer coûte souvent moins cher
-          qu&apos;une erreur de cotisations ou une DSN rejetée.
+          d&apos;avoir le temps et les compétences pour les piloter, et aucun
+          ne répond au téléphone quand une situation sort du cadre. Si la paie
+          n&apos;est pas votre métier, la déléguer à un gestionnaire de paie
+          externalisé coûte souvent moins cher qu&apos;une erreur de
+          cotisations ou une DSN rejetée.
         </p>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {cartes.map((carte) => (
