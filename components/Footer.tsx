@@ -19,8 +19,16 @@ export default function Footer() {
           <p className="mt-3 text-sm leading-relaxed">
             Externalisation de la paie et des déclarations sociales pour les
             TPE, PME, associations, professions libérales et particuliers
-            employeurs. Un service du Cabinet Cholez-Pagotto, juriste
-            formaliste membre du CRFF, à Épinal.
+            employeurs. Un service du{" "}
+            <a
+              href="https://cholez-pagotto.fr/"
+              target="_blank"
+              rel="noopener"
+              className="font-semibold text-emerald-deep hover:underline"
+            >
+              Cabinet Cholez-Pagotto
+            </a>
+            .
           </p>
         </div>
         <div>
@@ -164,8 +172,8 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-line px-4 py-5 text-center text-xs text-ink/60">
-        © {new Date().getFullYear()}{" "}Cabinet Cholez-Pagotto · SIREN
-        490&nbsp;889&nbsp;516 · Épinal · Tous droits réservés
+        © {new Date().getFullYear()}{" "}Cabinet Cholez-Pagotto · Tous droits
+        réservés
       </div>
     </footer>
   );
