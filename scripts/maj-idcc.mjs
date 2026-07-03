@@ -248,6 +248,16 @@ async function principal() {
   for (const f of fusions) {
     if (!codes.has(f.idcc)) conventions.push({ ...f, statut: "fusionnee" });
   }
+
+  // Code special de la nomenclature DSN, absent du fichier Dares mais
+  // indispensable en paie : employeur sans convention collective.
+  if (!codes.has("9999")) {
+    conventions.push({
+      idcc: "9999",
+      titre: "Sans convention collective (application directe du Code du travail)",
+      statut: "en_vigueur",
+    });
+  }
   conventions.sort((a, b) => a.idcc.localeCompare(b.idcc));
 
   const precedent = JSON.parse(readFileSync("data/idcc.json", "utf-8"));

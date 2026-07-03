@@ -2930,6 +2930,11 @@
       "idcc": "9972",
       "titre": "Convention collective départementale des exploitations agricoles Guyane",
       "statut": "en_vigueur"
+    },
+    {
+      "idcc": "9999",
+      "titre": "Sans convention collective (application directe du Code du travail)",
+      "statut": "en_vigueur"
     }
   ]
 }
