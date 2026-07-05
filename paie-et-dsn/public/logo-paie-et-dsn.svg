@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 330" role="img" aria-label="paie et dsn.fr, un service de CBT CHOLEZ-PAGOTTO">
+  <style>
+    .gros { font-family: 'Poppins', 'Arial', sans-serif; font-weight: 700; font-size: 150px; }
+    .et { font-family: 'Poppins', 'Arial', sans-serif; font-weight: 700; font-size: 82px; }
+    .fr { font-family: 'Poppins', 'Arial', sans-serif; font-weight: 700; font-size: 58px; }
+    .sig { font-family: 'Poppins', 'Arial', sans-serif; font-weight: 400; font-size: 30px; letter-spacing: 0.02em; }
+  </style>
+  <text x="40" y="200" class="gros" fill="#0F2544">paie</text>
+  <text x="465" y="200" class="et" fill="#00A878">et</text>
+  <text x="580" y="200" class="gros" fill="#0F2544">dsn</text>
+  <g transform="rotate(-10 1020 110)">
+    <rect x="945" y="55" width="150" height="110" rx="34" fill="#E8A020"/>
+    <text x="982" y="132" class="fr" fill="#FFFFFF">.fr</text>
+  </g>
+  <text x="475" y="270" class="sig" fill="#33415C" text-anchor="middle">Un service de CBT CHOLEZ-PAGOTTO</text>
+</svg>
