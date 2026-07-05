@@ -107,7 +107,7 @@ export default function Tarifs() {
         </div>
       </div>
           <p className="mx-auto mt-6 max-w-3xl px-4 text-center text-xs text-ink/60">
-        Prix exprimés toutes taxes : TVA non applicable, article 293 B du CGI.
+        TVA non applicable, article 293 B du CGI.
       </p>
 </section>
   );
