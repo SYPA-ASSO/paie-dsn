@@ -84,7 +84,7 @@ export async function POST(requete: Request) {
         `Bonjour ${corps.nom},`,
         "",
         type === "retractation"
-          ? "Nous accusons réception de votre déclaration de rétractation, dont le contenu et l'horodatage figurent ci-dessous. Votre abonnement sera annulé et les sommes versées remboursées dans un délai maximal de 14 jours (article L. 221-24 du Code de la consommation)."
+          ? "Nous accusons réception de votre déclaration de rétractation, dont le contenu et l'horodatage figurent ci-dessous. Le cabinet examine l'applicabilité de votre droit de rétractation au regard de l'article 12 des CGV (les abonnements de contenu numérique souscrits avec demande expresse d'exécution immédiate comportent renonciation à ce droit) et vous répond sous 48 heures ouvrées. Si la rétractation est applicable, votre abonnement est annulé et les sommes versées remboursées dans un délai maximal de 14 jours (article L. 221-24 du Code de la consommation), déduction faite le cas échéant du service déjà fourni (article L. 221-25)."
           : "Nous accusons réception de votre demande de résiliation, dont le contenu et l'horodatage figurent ci-dessous. Votre abonnement prendra fin au terme de la période mensuelle en cours ; aucune échéance ultérieure ne sera prélevée. Une confirmation vous sera adressée.",
         "",
         ...recapitulatif,
@@ -102,7 +102,7 @@ export async function POST(requete: Request) {
           ...recapitulatif,
           "",
           type === "retractation"
-            ? "Actions : annuler l'abonnement dans Stripe (Clients > abonnement > Annuler immédiatement), REMBOURSER le paiement (délai légal maximal : 14 jours), désactiver l'offre du dossier client."
+            ? "Actions : VERIFIER le consentement d'execution immediate (Stripe > abonnement > metadonnees : consentement_execution_immediate). S'il est present : droit de retractation eteint (L. 221-28 13°), repondre au client sous 48 h ouvrees (proposer le cas echeant une resiliation fin de periode en geste commercial). S'il est ABSENT : annuler l'abonnement immediatement, rembourser sous 14 jours (prorata possible du service fourni, L. 221-25), desactiver l'offre du dossier."
             : "Actions : annuler l'abonnement dans Stripe EN FIN DE PERIODE (Clients > abonnement > Annuler à la fin de la période), puis désactiver l'offre du dossier client à l'échéance.",
         ].join("\n")
       );

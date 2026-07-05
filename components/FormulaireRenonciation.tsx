@@ -56,7 +56,7 @@ export default function FormulaireRenonciation() {
           Déclaration reçue le {horodatage} (heure de Paris). Un accusé de
           réception horodaté vient de vous être adressé par e-mail : il fait
           foi de votre démarche. {type === "retractation"
-            ? "Le remboursement interviendra sous 14 jours au plus."
+            ? "Le cabinet examine l'applicabilité de votre droit de rétractation (article 12 des CGV) et vous répond sous 48 heures ouvrées ; si la rétractation est applicable, le remboursement intervient sous 14 jours au plus."
             : "Votre abonnement prendra fin au terme de la période mensuelle en cours."}
         </p>
       </div>
@@ -80,8 +80,8 @@ export default function FormulaireRenonciation() {
               <span className="font-semibold text-navy">
                 Renoncer au contrat (rétractation)
               </span>
-              &nbsp;: votre souscription date de moins de 14 jours. Annulation
-              et remboursement intégral.
+              &nbsp;: souscription de moins de 14 jours, si votre droit de
+              rétractation est applicable (voir CGV, article 12).
             </span>
           </label>
           <label className="flex items-start gap-3 rounded-xl border border-line bg-white p-3 text-sm">

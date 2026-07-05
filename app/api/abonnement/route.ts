@@ -16,15 +16,27 @@ export async function POST(requete: Request) {
   }
 
   let formule: CleFormule;
+  let consentement = false;
   try {
-    const corps = (await requete.json()) as { formule?: string };
+    const corps = (await requete.json()) as {
+      formule?: string;
+      consentement?: boolean;
+    };
     if (corps.formule !== "essentiel" && corps.formule !== "copilote") {
       throw new Error();
     }
     formule = corps.formule;
+    consentement = corps.consentement === true;
   } catch {
     return NextResponse.json({ erreur: "Formule inconnue." }, { status: 400 });
   }
+  if (!consentement) {
+    return NextResponse.json(
+      { erreur: "Merci de cocher la demande d'exécution immédiate pour poursuivre." },
+      { status: 400 }
+    );
+  }
+  const horodatageConsentement = new Date().toISOString();
 
   const stripe = clientStripe();
   const session = await stripe.checkout.sessions.create({
@@ -36,9 +48,17 @@ export async function POST(requete: Request) {
     success_url:
       "https://paie-et-dsn.fr/veille-sociale-rh/merci?session_id={CHECKOUT_SESSION_ID}",
     cancel_url: "https://paie-et-dsn.fr/veille-sociale-rh",
-    metadata: { source: "paie-et-dsn.fr", formule },
+    metadata: {
+      source: "paie-et-dsn.fr",
+      formule,
+      consentement_execution_immediate: horodatageConsentement,
+    },
     subscription_data: {
-      metadata: { source: "paie-et-dsn.fr", formule },
+      metadata: {
+        source: "paie-et-dsn.fr",
+        formule,
+        consentement_execution_immediate: horodatageConsentement,
+      },
     },
   });
 

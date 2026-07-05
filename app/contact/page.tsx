@@ -28,7 +28,7 @@ export default async function Contact({
     : undefined;
   const messageInitial =
     abonnement && nomFormule
-      ? `Je souhaite souscrire la formule ${nomFormule} avec paiement par virement à réception de facture.`
+      ? `Je souhaite souscrire la formule ${nomFormule} avec paiement par virement à réception de facture. Je demande expressément l'exécution immédiate de l'abonnement et reconnais perdre en conséquence mon droit de rétractation (article L. 221-28, 13° du Code de la consommation).`
       : undefined;
   const schema = {
     "@context": "https://schema.org",
