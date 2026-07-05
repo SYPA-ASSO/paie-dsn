@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BoutonsSouscription from "@/components/BoutonsSouscription";
 
 export const metadata: Metadata = {
   title: "Veille sociale et RH : deux formules d'abonnement pour employeurs",
@@ -107,12 +108,10 @@ export default function VeilleSocialeRh() {
                 </li>
               ))}
             </ul>
-            <a
-              href="/contact"
-              className="mt-8 rounded-full border-2 border-emerald-brand px-6 py-3 text-center font-semibold text-emerald-deep transition hover:bg-emerald-brand hover:text-white"
-            >
-              Souscrire L&apos;Essentiel Social
-            </a>
+            <BoutonsSouscription
+              formule="essentiel"
+              libelle="Souscrire L'Essentiel Social"
+            />
           </article>
 
           <article className="relative flex flex-col rounded-3xl border-2 border-emerald-brand bg-white p-8 shadow-lg">
@@ -148,12 +147,11 @@ export default function VeilleSocialeRh() {
                 </li>
               ))}
             </ul>
-            <a
-              href="/contact"
-              className="mt-8 rounded-full bg-emerald-brand px-6 py-3 text-center font-semibold text-white shadow-sm transition hover:bg-emerald-deep"
-            >
-              Souscrire Le Copilote Social
-            </a>
+            <BoutonsSouscription
+              formule="copilote"
+              libelle="Souscrire Le Copilote Social"
+              principal
+            />
           </article>
         </div>
 

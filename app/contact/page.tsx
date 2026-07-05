@@ -10,7 +10,26 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://paie-et-dsn.fr/contact" },
 };
 
-export default function Contact() {
+export default async function Contact({
+  searchParams,
+}: {
+  searchParams: Promise<{ sujet?: string; formule?: string }>;
+}) {
+  const parametres = await searchParams;
+  const abonnement = parametres.sujet === "abonnement";
+  const nomFormule =
+    parametres.formule === "copilote"
+      ? "Le Copilote Social"
+      : parametres.formule === "essentiel"
+        ? "L'Essentiel Social"
+        : null;
+  const typeInitial = abonnement
+    ? "Abonnements veille sociale et RH"
+    : undefined;
+  const messageInitial =
+    abonnement && nomFormule
+      ? `Je souhaite souscrire la formule ${nomFormule} avec paiement par virement à réception de facture.`
+      : undefined;
   const schema = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
@@ -51,7 +70,10 @@ export default function Contact() {
         </p>
 
         <div className="mt-10 rounded-2xl border border-line bg-white p-6 sm:p-8">
-          <FormulaireContact />
+          <FormulaireContact
+            typeInitial={typeInitial}
+            messageInitial={messageInitial}
+          />
         </div>
 
                 <p className="mt-6 text-xs leading-relaxed text-ink/70">

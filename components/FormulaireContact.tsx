@@ -17,8 +17,16 @@ const typesDevis = new Set([
   "Particulier employeur",
 ]);
 
-export default function FormulaireContact() {
-  const [type, setType] = useState(types[0]);
+export default function FormulaireContact({
+  typeInitial,
+  messageInitial,
+}: {
+  typeInitial?: string;
+  messageInitial?: string;
+}) {
+  const [type, setType] = useState(
+    typeInitial && types.includes(typeInitial) ? typeInitial : types[0]
+  );
   const [statut, setStatut] = useState<"repos" | "envoi" | "ok" | "erreur">(
     "repos"
   );
@@ -182,6 +190,7 @@ export default function FormulaireContact() {
           name="message"
           required
           rows={5}
+          defaultValue={messageInitial}
           className={champ}
           placeholder={
             devis

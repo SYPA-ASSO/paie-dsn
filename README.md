@@ -77,6 +77,34 @@ se fait a la main, le script fait tout le reste.
    puis git add data/idcc.json, git status, git commit -m "maj: referentiel IDCC", git push.
 Automatisation possible plus tard via l'API Legifrance (PISTE, identifiants gratuits a creer).
 
+## Souscription en ligne des abonnements (Stripe, compte du cabinet)
+
+Compte Stripe : celui du cabinet (commun avec cholez-pagotto.fr, meme entite juridique).
+1. Produits : dashboard Stripe > Catalogue de produits > Ajouter un produit, deux fois :
+   - "L'Essentiel Social", prix recurrent mensuel 109,90 EUR
+   - "Le Copilote Social", prix recurrent mensuel 229,90 EUR
+   Copier l'identifiant de chaque PRIX (commence par price_).
+2. Cle restreinte : Developpeurs > Cles API > Creer une cle restreinte, nom "paie-et-dsn.fr".
+   Permissions minimales : Checkout Sessions = Ecriture ; Customers = Ecriture ;
+   Subscriptions = Lecture ; Products et Prices = Lecture. Tout le reste = Aucune.
+   La cle (rk_live_...) ne se colle QUE dans Vercel, jamais ailleurs.
+3. Webhook : Developpeurs > Webhooks > Ajouter un endpoint :
+   URL https://paie-et-dsn.fr/api/stripe/webhook
+   Evenements : checkout.session.completed et customer.subscription.deleted.
+   Copier le secret de signature (whsec_...).
+4. Vercel > Settings > Environment Variables (puis Redeploy) :
+   - STRIPE_SECRET_KEY = la cle restreinte rk_live_...
+   - STRIPE_WEBHOOK_SECRET = whsec_...
+   - STRIPE_PRICE_ESSENTIEL = price_... (Essentiel)
+   - STRIPE_PRICE_COPILOTE = price_... (Copilote)
+5. Test recommande avant ouverture : refaire 1-4 en mode Test de Stripe (cles rk_test/whsec test,
+   prix test) sur l'environnement Preview, payer avec la carte 4242 4242 4242 4242, verifier
+   l'e-mail de notification et la page /veille-sociale-rh/merci, puis basculer en LIVE.
+Sans ces variables, les boutons carte affichent un message d'attente et la voie virement
+(formulaire de contact) reste operationnelle.
+Rappel branding Stripe (deja fait cote Docutheque) : documents nommes "Recu de paiement",
+les factures restant emises par le logiciel de facturation du cabinet.
+
 ## Espace client (Supabase dedie, separe de la Docutheque)
 
 1. Creer un NOUVEAU projet sur supabase.com (region UE), distinct de celui de la Docutheque.
