@@ -159,6 +159,14 @@ export default function Footer() {
               </Link>
             </li>
             <li>
+              <Link
+                href="/renoncer-au-contrat"
+                className="hover:text-emerald-deep"
+              >
+                Renoncer au contrat ici
+              </Link>
+            </li>
+            <li>
               <Link href="/cgv" className="hover:text-emerald-deep">
                 Conditions générales de vente
               </Link>

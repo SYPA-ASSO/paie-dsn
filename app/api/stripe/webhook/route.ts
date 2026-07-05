@@ -98,6 +98,54 @@ export async function POST(requete: Request) {
     }
   }
 
+  // Echeance mensuelle encaissee (renouvellement) : rappel de facturation a l'admin.
+  // Necessite l'evenement invoice.paid sur la destination Stripe.
+  if (evenement.type === "invoice.paid") {
+    const facture = evenement.data.object;
+    if (facture.billing_reason === "subscription_cycle") {
+      // Metadonnees de l'abonnement : selon la version d'API, portees par
+      // parent.subscription_details ou a recuperer via l'abonnement lui-meme.
+      const details = (
+        facture as unknown as {
+          parent?: {
+            subscription_details?: {
+              metadata?: Record<string, string>;
+              subscription?: string | { id: string };
+            };
+          };
+          subscription?: string | { id: string } | null;
+        }
+      );
+      let metadonnees = details.parent?.subscription_details?.metadata;
+      if (!metadonnees) {
+        const ref =
+          details.parent?.subscription_details?.subscription ??
+          details.subscription;
+        const idAbonnement = typeof ref === "string" ? ref : ref?.id;
+        if (idAbonnement) {
+          try {
+            const abonnement = await stripe.subscriptions.retrieve(idAbonnement);
+            metadonnees = abonnement.metadata;
+          } catch {
+            metadonnees = undefined;
+          }
+        }
+      }
+      if (metadonnees?.source === "paie-et-dsn.fr") {
+        const montant = (facture.amount_paid / 100).toFixed(2).replace(".", ",");
+        await notifierCabinet("Echeance mensuelle encaissee : facture a emettre", [
+          `Formule : ${nomsFormules[metadonnees.formule ?? ""] ?? metadonnees.formule ?? "inconnue"}`,
+          `Client : ${facture.customer_name ?? ""}`,
+          `E-mail : ${facture.customer_email ?? ""}`,
+          `Montant encaisse : ${montant}\u00a0EUR`,
+          "",
+          "Actions : emettre la facture mensuelle via le logiciel de facturation",
+          "et la deposer dans l'espace client du dossier concerne (/admin > + Document > type Facture).",
+        ]);
+      }
+    }
+  }
+
   if (evenement.type === "customer.subscription.deleted") {
     const abonnement = evenement.data.object;
     if (abonnement.metadata?.source !== "paie-et-dsn.fr") {

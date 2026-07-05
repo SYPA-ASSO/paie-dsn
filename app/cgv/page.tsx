@@ -89,7 +89,7 @@ const articles = [
   {
     titre: "Article 12 · Droit de rétractation des consommateurs",
     contenu: [
-      "Le client consommateur (notamment particulier employeur) qui conclut le contrat à distance dispose d'un délai de rétractation de 14 jours à compter de la conclusion du contrat (article L. 221-18 du Code de la consommation), via le formulaire de contact du site. S'il demande l'exécution de la prestation avant l'expiration de ce délai, il reste redevable du prix correspondant au service fourni jusqu'à sa rétractation ; s'il demande l'exécution complète avant ce terme, il renonce expressément à son droit de rétractation.",
+      "Le client consommateur (notamment particulier employeur) qui conclut le contrat à distance dispose d'un délai de rétractation de 14 jours à compter de la conclusion du contrat (article L. 221-18 du Code de la consommation). Conformément à l'article L. 221-21 du même code, ce droit s'exerce en ligne via la fonctionnalité « Renoncer au contrat ici », accessible depuis le pied de page du site à l'adresse paie-et-dsn.fr/renoncer-au-contrat : déclaration en ligne, confirmation, puis accusé de réception horodaté adressé sans délai par e-mail. Il peut aussi s'exercer par le formulaire de contact du site ou par courrier. La résiliation d'un abonnement mensuel s'exerce à tout moment par les mêmes moyens, avec effet au terme de la période en cours. S'il demande l'exécution de la prestation avant l'expiration de ce délai, il reste redevable du prix correspondant au service fourni jusqu'à sa rétractation ; s'il demande l'exécution complète avant ce terme, il renonce expressément à son droit de rétractation.",
     ],
   },
   {

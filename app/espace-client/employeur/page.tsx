@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Deconnexion from "@/components/espace/Deconnexion";
+import ChangerMotDePasse from "@/components/espace/ChangerMotDePasse";
 import {
   clientServeur,
   configurationPresente,
@@ -169,6 +170,19 @@ export default async function EspaceEmployeur() {
             </div>
           ))}
         </section>
+        {abonne && (
+          <p className="mt-10 text-sm text-ink/70">
+            Votre abonnement est résiliable à tout moment :{" "}
+            <a
+              href="/renoncer-au-contrat"
+              className="font-semibold text-emerald-deep underline"
+            >
+              renoncer au contrat ici
+            </a>
+            .
+          </p>
+        )}
+        <ChangerMotDePasse />
       </main>
       <Footer />
     </>

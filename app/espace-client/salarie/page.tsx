@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Deconnexion from "@/components/espace/Deconnexion";
+import ChangerMotDePasse from "@/components/espace/ChangerMotDePasse";
 import {
   clientServeur,
   configurationPresente,
@@ -72,6 +73,7 @@ export default async function EspaceSalarie() {
             ))}
           </ul>
         )}
+        <ChangerMotDePasse />
       </main>
       <Footer />
     </>
