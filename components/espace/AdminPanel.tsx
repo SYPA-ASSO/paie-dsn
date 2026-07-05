@@ -13,6 +13,7 @@ const actions = [
   { cle: "utilisateur", libelle: "+ Utilisateur" },
   { cle: "document", libelle: "+ Document" },
   { cle: "ressource", libelle: "+ Ressource documentaire" },
+  { cle: "offres", libelle: "Offres d'un dossier" },
 ] as const;
 
 type CleAction = (typeof actions)[number]["cle"];
@@ -26,6 +27,8 @@ export default function AdminPanel({
 }) {
   const [message, setMessage] = useState("");
   const [ouvert, setOuvert] = useState<CleAction | null>(null);
+  const [dossierOffres, setDossierOffres] = useState("");
+  const organisationOffres = organisations.find((o) => o.id === dossierOffres);
 
   async function envoyer(e: React.FormEvent<HTMLFormElement>, libelle: string) {
     e.preventDefault();
@@ -215,6 +218,73 @@ export default function AdminPanel({
         <button className="mt-4 w-full rounded-full bg-emerald-brand px-4 py-2 text-sm font-semibold text-white">
           Déposer
         </button>
+      </form>
+      </div>
+
+      <div className={ouvert === "offres" ? "mt-6 max-w-md" : "hidden"}>
+      <form
+        onSubmit={(e) => envoyer(e, "Offres mises à jour")}
+        className="rounded-2xl border border-line bg-white p-5"
+      >
+        <h2 className="font-bold text-navy">
+          Modifier les offres d&apos;un dossier (souscription manuelle)
+        </h2>
+        <input type="hidden" name="action" value="organisation_offres" />
+        <label className={`mt-3 ${etiquette}`}>
+          Dossier client&nbsp;*
+          <select
+            name="organisation_id"
+            required
+            value={dossierOffres}
+            onChange={(e) => setDossierOffres(e.target.value)}
+            className={champ}
+          >
+            <option value="">Choisir...</option>
+            {organisations.map((o) => (
+              <option key={o.id} value={o.id}>
+                {o.nom}
+              </option>
+            ))}
+          </select>
+        </label>
+        {organisationOffres && (
+          <>
+            <p className={`mt-3 ${etiquette}`}>Offres souscrites</p>
+            <label className="mt-1 flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                name="offre_paie"
+                defaultChecked={Boolean(organisationOffres.offre_paie)}
+                key={`p-${dossierOffres}`}
+                className="h-4 w-4 accent-[#00a878]"
+              />
+              Gestion de paie
+            </label>
+            <label className="mt-1 flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                name="offre_essentiel"
+                defaultChecked={Boolean(organisationOffres.offre_essentiel)}
+                key={`e-${dossierOffres}`}
+                className="h-4 w-4 accent-[#00a878]"
+              />
+              L&apos;Essentiel Social
+            </label>
+            <label className="mt-1 flex items-center gap-2 text-sm">
+              <input
+                type="checkbox"
+                name="offre_copilote"
+                defaultChecked={Boolean(organisationOffres.offre_copilote)}
+                key={`c-${dossierOffres}`}
+                className="h-4 w-4 accent-[#00a878]"
+              />
+              Le Copilote Social
+            </label>
+            <button className="mt-4 w-full rounded-full bg-navy px-4 py-2 text-sm font-semibold text-white">
+              Enregistrer
+            </button>
+          </>
+        )}
       </form>
       </div>
 

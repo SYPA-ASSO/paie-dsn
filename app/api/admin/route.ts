@@ -86,6 +86,21 @@ export async function POST(requete: Request) {
       return NextResponse.json({ ok: true });
     }
 
+    if (action === "organisation_offres") {
+      const organisation = String(donnees.get("organisation_id") ?? "");
+      if (!organisation) throw new Error("Organisation requise.");
+      const { error } = await service
+        .from("organisations")
+        .update({
+          offre_paie: donnees.get("offre_paie") === "on",
+          offre_essentiel: donnees.get("offre_essentiel") === "on",
+          offre_copilote: donnees.get("offre_copilote") === "on",
+        })
+        .eq("id", organisation);
+      if (error) throw error;
+      return NextResponse.json({ ok: true });
+    }
+
     if (action === "ressource") {
       const fichier = donnees.get("fichier");
       const typeRessource = String(donnees.get("type_ressource") ?? "");

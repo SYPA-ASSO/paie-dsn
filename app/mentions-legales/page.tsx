@@ -90,9 +90,7 @@ export default function MentionsLegales() {
               employeur) peut recourir gratuitement, après réclamation écrite
               préalable auprès du cabinet, au médiateur de la consommation
               désigné : Centre de Médiation de la Consommation de Conciliateurs
-              de Justice (CM2C), www.cm2c.net. La plateforme européenne de
-              règlement en ligne des litiges est accessible à l&apos;adresse
-              https://ec.europa.eu/consumers/odr.
+              de Justice (CM2C), www.cm2c.net.
             </p>
           </section>
           <section>

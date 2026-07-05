@@ -10,7 +10,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://paie-et-dsn.fr/renoncer-au-contrat" },
 };
 
-export default function RenoncerAuContrat() {
+export default async function RenoncerAuContrat({
+  searchParams,
+}: {
+  searchParams: Promise<{ type?: string }>;
+}) {
+  const parametres = await searchParams;
+  const typeInitial =
+    parametres.type === "resiliation" ? ("resiliation" as const) : undefined;
   return (
     <>
       <Header />
@@ -33,7 +40,7 @@ export default function RenoncerAuContrat() {
         </p>
 
         <div className="mt-10 rounded-2xl border border-line bg-ivory p-6 sm:p-8">
-          <FormulaireRenonciation />
+          <FormulaireRenonciation typeInitial={typeInitial} />
         </div>
 
         <p className="mt-6 text-xs leading-relaxed text-ink/70">

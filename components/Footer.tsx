@@ -167,6 +167,14 @@ export default function Footer() {
               </Link>
             </li>
             <li>
+              <Link
+                href="/renoncer-au-contrat?type=resiliation"
+                className="hover:text-emerald-deep"
+              >
+                Résilier votre abonnement
+              </Link>
+            </li>
+            <li>
               <Link href="/cgv" className="hover:text-emerald-deep">
                 Conditions générales de vente
               </Link>

@@ -95,7 +95,7 @@ const articles = [
   {
     titre: "Article 13 · Médiation et litiges",
     contenu: [
-      "Réclamations : via le formulaire de contact du site, réponse sous 30 jours. À défaut de résolution amiable, tout client consommateur peut recourir gratuitement au médiateur de la consommation désigné par le cabinet : Centre de Médiation de la Consommation de Conciliateurs de Justice (CM2C), www.cm2c.net, ou à la plateforme européenne de règlement en ligne des litiges (https://ec.europa.eu/consumers/odr).",
+      "Réclamations : via le formulaire de contact du site, réponse sous 30 jours. À défaut de résolution amiable, tout client consommateur peut recourir gratuitement au médiateur de la consommation désigné par le cabinet : Centre de Médiation de la Consommation de Conciliateurs de Justice (CM2C), www.cm2c.net.",
       "Les présentes CGV sont soumises au droit français. Pour les clients professionnels, tout litige relève des juridictions dans le ressort desquelles est situé le siège du cabinet. Les clients consommateurs peuvent saisir la juridiction de leur choix parmi celles territorialement compétentes.",
     ],
   },

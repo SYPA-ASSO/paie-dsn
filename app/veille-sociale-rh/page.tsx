@@ -96,7 +96,7 @@ export default function VeilleSocialeRh() {
             </p>
             <p className="mt-1 text-sm text-ink/70">
               Sans engagement, résiliable chaque mois.
-            </p>
+             Prix toutes taxes : TVA non applicable, article 293 B du CGI.</p>
             <ul className="mt-6 flex-1 space-y-3">
               {socleCommun.map((item) => (
                 <li key={item} className="flex items-start gap-3 text-sm">

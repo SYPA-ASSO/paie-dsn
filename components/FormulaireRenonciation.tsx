@@ -6,9 +6,13 @@ const champ =
   "mt-1 w-full rounded-lg border border-line bg-white px-3 py-2.5 text-sm text-ink";
 const etiquette = "block text-sm font-semibold text-navy";
 
-export default function FormulaireRenonciation() {
+export default function FormulaireRenonciation({
+  typeInitial,
+}: {
+  typeInitial?: "retractation" | "resiliation";
+}) {
   const [type, setType] = useState<"retractation" | "resiliation">(
-    "retractation"
+    typeInitial ?? "retractation"
   );
   const [statut, setStatut] = useState<"repos" | "envoi" | "ok" | "erreur">(
     "repos"
