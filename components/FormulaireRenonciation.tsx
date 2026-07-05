@@ -81,7 +81,10 @@ export default function FormulaireRenonciation() {
                 Renoncer au contrat (rétractation)
               </span>
               &nbsp;: souscription de moins de 14 jours, si votre droit de
-              rétractation est applicable (voir CGV, article 12).
+              rétractation est applicable (voir CGV, article 12). Si vous avez
+              demandé l&apos;exécution immédiate lors de votre souscription en
+              ligne, vous avez renoncé à ce droit&nbsp;; votre déclaration
+              sera néanmoins enregistrée et examinée.
             </span>
           </label>
           <label className="flex items-start gap-3 rounded-xl border border-line bg-white p-3 text-sm">
