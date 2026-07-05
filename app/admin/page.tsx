@@ -10,6 +10,8 @@ import {
   configurationPresente,
   profilCourant,
 } from "@/lib/supabase/server";
+import { clientStripe, configurationStripePresente } from "@/lib/stripe";
+import type Stripe from "stripe";
 
 export const dynamic = "force-dynamic";
 
@@ -69,6 +71,69 @@ export default async function Admin() {
     // Sans cle service valide, l'annuaire s'affiche sans e-mails
   }
 
+  // Souscriptions en ligne (Stripe, lecture seule via la cle restreinte)
+  type Souscription = {
+    id: string;
+    nom: string;
+    email: string;
+    formule: string;
+    statut: string;
+    resilieEnFin: boolean;
+    depuis: string;
+  };
+  const nomsFormulesStripe: Record<string, string> = {
+    essentiel: "L'Essentiel Social",
+    copilote: "Le Copilote Social",
+  };
+  const statutsStripe: Record<string, string> = {
+    active: "Actif",
+    trialing: "Essai",
+    past_due: "Impayé",
+    unpaid: "Impayé",
+    canceled: "Résilié",
+    incomplete: "Incomplet",
+    incomplete_expired: "Expiré",
+    paused: "En pause",
+  };
+  let souscriptions: Souscription[] = [];
+  let stripeIndisponible = false;
+  if (configurationStripePresente()) {
+    try {
+      const stripe = clientStripe();
+      const liste = await stripe.subscriptions.list({
+        status: "all",
+        limit: 100,
+        expand: ["data.customer"],
+      });
+      souscriptions = liste.data
+        .filter((s) => s.metadata?.source === "paie-et-dsn.fr")
+        .map((s) => {
+          const brut = s.customer;
+          const client =
+            typeof brut === "object" && !("deleted" in brut && brut.deleted)
+              ? (brut as Stripe.Customer)
+              : null;
+          return {
+            id: s.id,
+            nom: client?.name ?? "",
+            email: client?.email ?? "",
+            formule:
+              nomsFormulesStripe[s.metadata?.formule ?? ""] ??
+              s.metadata?.formule ??
+              "",
+            statut: statutsStripe[s.status] ?? s.status,
+            resilieEnFin: s.cancel_at_period_end,
+            depuis: new Date(s.created * 1000).toLocaleDateString("fr-FR"),
+          };
+        });
+    } catch {
+      stripeIndisponible = true;
+    }
+  }
+  const emailsComptes = new Set(
+    [...emails.values()].map((e) => e.toLowerCase())
+  );
+
   const listeOrganisations = organisations ?? [];
   const listeProfils = (profils ?? []).map((p) => ({
     ...p,
@@ -107,6 +172,77 @@ export default async function Admin() {
           organisations={listeOrganisations}
           utilisateurs={listeProfils}
         />
+
+        <section className="mt-12">
+          <h2 className="text-xl font-bold text-navy">
+            Souscriptions en ligne (Stripe)
+          </h2>
+          {stripeIndisponible ? (
+            <p className="mt-2 text-sm text-ink/70">
+              Lecture Stripe momentanément indisponible : consultez le
+              dashboard Stripe.
+            </p>
+          ) : souscriptions.length === 0 ? (
+            <p className="mt-2 text-sm text-ink/70">
+              Aucune souscription en ligne pour le moment (les abonnements
+              souscrits par virement n&apos;apparaissent pas ici).
+            </p>
+          ) : (
+            <div className="mt-2 overflow-x-auto rounded-2xl border border-line bg-white p-4">
+              <table className="w-full min-w-[640px] text-left text-sm">
+                <thead>
+                  <tr className="border-b border-line text-xs uppercase tracking-wide text-ink/60">
+                    <th className="py-2 pr-3">Client</th>
+                    <th className="py-2 pr-3">E-mail</th>
+                    <th className="py-2 pr-3">Formule</th>
+                    <th className="py-2 pr-3">Depuis</th>
+                    <th className="py-2 pr-3">Statut</th>
+                    <th className="py-2">Dossier</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {souscriptions.map((s) => (
+                    <tr key={s.id} className="border-b border-line/60">
+                      <td className="py-2 pr-3 font-medium text-navy">
+                        {s.nom || "Sans nom"}
+                      </td>
+                      <td className="py-2 pr-3">{s.email}</td>
+                      <td className="py-2 pr-3">{s.formule}</td>
+                      <td className="py-2 pr-3">{s.depuis}</td>
+                      <td className="py-2 pr-3">
+                        <span
+                          className={
+                            s.statut === "Actif" || s.statut === "Essai"
+                              ? "rounded-full bg-emerald-tint px-2 py-0.5 text-xs font-semibold text-emerald-deep"
+                              : s.statut === "Résilié" || s.statut === "Expiré"
+                                ? "rounded-full bg-ivory px-2 py-0.5 text-xs font-semibold text-ink/60"
+                                : "rounded-full bg-amber-tint px-2 py-0.5 text-xs font-semibold text-amber-brand"
+                          }
+                        >
+                          {s.statut}
+                          {s.resilieEnFin && s.statut === "Actif"
+                            ? " · fin de période"
+                            : ""}
+                        </span>
+                      </td>
+                      <td className="py-2">
+                        {s.email && emailsComptes.has(s.email.toLowerCase()) ? (
+                          <span className="text-xs font-semibold text-emerald-deep">
+                            Rattaché
+                          </span>
+                        ) : (
+                          <span className="rounded-full bg-amber-tint px-2 py-0.5 text-xs font-semibold text-amber-brand">
+                            Dossier à créer
+                          </span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
 
         <section className="mt-12">
           <h2 className="text-xl font-bold text-navy">
