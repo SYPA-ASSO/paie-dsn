@@ -10,6 +10,51 @@ import {
 // Toutes les ecritures passent par la cle service, apres verification du role admin.
 type ClientService = ReturnType<typeof clientService>;
 
+// Cree l'utilisateur, ou ADOPTE un compte existant portant le meme e-mail
+// (compte orphelin d'une tentative precedente, ou client deja connu) :
+// mot de passe provisoire applique, profil cree ou mis a jour.
+async function creerOuAdopter(
+  service: ClientService,
+  email: string,
+  motdepasse: string,
+  profil: { role: string; organisation_id: string | null; nom: string | null }
+): Promise<{ userId: string; adopte: boolean }> {
+  const { data: cree, error } = await service.auth.admin.createUser({
+    email,
+    password: motdepasse,
+    email_confirm: true,
+  });
+  if (!error && cree?.user) {
+    const { error: erreurProfil } = await service.from("profils").insert({
+      user_id: cree.user.id,
+      ...profil,
+    });
+    if (erreurProfil) throw erreurProfil;
+    return { userId: cree.user.id, adopte: false };
+  }
+  if (!/already/i.test(error?.message ?? "")) throw error;
+  // Adoption : retrouver le compte par e-mail
+  const { data: liste } = await service.auth.admin.listUsers({
+    page: 1,
+    perPage: 1000,
+  });
+  const existant = liste?.users?.find(
+    (u) => (u.email ?? "").toLowerCase() === email.toLowerCase()
+  );
+  if (!existant) {
+    throw new Error("Un compte existe déjà avec cette adresse e-mail, mais il est introuvable : supprimez-le dans Supabase (Authentication > Users).");
+  }
+  await service.auth.admin.updateUserById(existant.id, {
+    password: motdepasse,
+    email_confirm: true,
+  });
+  const { error: erreurProfil } = await service
+    .from("profils")
+    .upsert({ user_id: existant.id, ...profil }, { onConflict: "user_id" });
+  if (erreurProfil) throw erreurProfil;
+  return { userId: existant.id, adopte: true };
+}
+
 async function envoyerInvitation(
   service: ClientService,
   email: string,
@@ -97,25 +142,22 @@ export async function POST(requete: Request) {
       if (!email || motdepasse.length < 8 || !["employeur", "salarie", "admin"].includes(role)) {
         throw new Error("Champs invalides (mot de passe : 8 caractères minimum).");
       }
-      const { data: cree, error } = await service.auth.admin.createUser({
-        email,
-        password: motdepasse,
-        email_confirm: true,
-      });
-      if (error) throw error;
-      const { error: erreurProfil } = await service.from("profils").insert({
-        user_id: cree.user.id,
+      const { adopte } = await creerOuAdopter(service, email, motdepasse, {
         role,
         organisation_id: organisation,
         nom: String(donnees.get("nom") ?? "").trim() || null,
       });
-      if (erreurProfil) throw erreurProfil;
       const information = await envoyerInvitation(
         service,
         email,
         String(donnees.get("nom") ?? "").trim()
       );
-      return NextResponse.json({ ok: true, information });
+      return NextResponse.json({
+        ok: true,
+        information: adopte
+          ? `Un compte existait déjà avec cet e-mail : il a été réutilisé et mis à jour. ${information}`
+          : information,
+      });
     }
 
     if (action === "document") {
@@ -165,29 +207,22 @@ export async function POST(requete: Request) {
         .select("id")
         .single();
       if (erreurOrganisation) throw erreurOrganisation;
-      const { data: cree, error: erreurUtilisateur } = await service.auth.admin.createUser({
-        email,
-        password: motdepasse,
-        email_confirm: true,
-      });
-      if (erreurUtilisateur) {
-        throw new Error(
-          `Dossier créé, mais compte non créé : ${erreurUtilisateur.message}. Créez le compte via "+ Compte" en le rattachant au dossier.`
-        );
-      }
-      const { error: erreurProfil } = await service.from("profils").insert({
-        user_id: cree.user.id,
+      const { adopte } = await creerOuAdopter(service, email, motdepasse, {
         role: "employeur",
         organisation_id: organisation.id,
         nom: String(donnees.get("nom_contact") ?? "").trim() || nom,
       });
-      if (erreurProfil) throw erreurProfil;
       const information = await envoyerInvitation(
         service,
         email,
         String(donnees.get("nom_contact") ?? "").trim() || nom
       );
-      return NextResponse.json({ ok: true, information });
+      return NextResponse.json({
+        ok: true,
+        information: adopte
+          ? `Un compte existait déjà avec cet e-mail : il a été réutilisé, rattaché au dossier et son mot de passe provisoire mis à jour. ${information}`
+          : information,
+      });
     }
 
     if (action === "organisation_offres") {
