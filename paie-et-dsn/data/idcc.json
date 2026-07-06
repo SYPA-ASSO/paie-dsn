@@ -1,0 +1,280 @@
+{
+  "source": "Liste de démarrage établie manuellement. Sera remplacée par le fichier officiel (data.gouv.fr) via scripts/maj-idcc.mjs.",
+  "derniereMiseAJour": "2026-07-02",
+  "conventions": [
+    {
+      "idcc": "0016",
+      "titre": "Transports routiers et activités auxiliaires du transport",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "0029",
+      "titre": "Établissements privés d'hospitalisation, de soins, de cure et de garde à but non lucratif (CCN 51)",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "0044",
+      "titre": "Industries chimiques et connexes",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "0054",
+      "titre": "Métallurgie de la région parisienne",
+      "statut": "fusionnee",
+      "fusionDans": "3248"
+    },
+    {
+      "idcc": "0086",
+      "titre": "Entreprises de publicité et assimilées",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "0413",
+      "titre": "Établissements et services pour personnes inadaptées et handicapées (CCN 66)",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "0573",
+      "titre": "Commerces de gros",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "0650",
+      "titre": "Ingénieurs et cadres de la métallurgie",
+      "statut": "fusionnee",
+      "fusionDans": "3248"
+    },
+    {
+      "idcc": "0787",
+      "titre": "Cabinets d'experts-comptables et de commissaires aux comptes",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "0843",
+      "titre": "Boulangeries-pâtisseries artisanales",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1000",
+      "titre": "Personnel des cabinets d'avocats",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1043",
+      "titre": "Gardiens, concierges et employés d'immeubles",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1090",
+      "titre": "Services de l'automobile",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1147",
+      "titre": "Personnel des cabinets médicaux",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1261",
+      "titre": "Acteurs du lien social et familial (ALISFA)",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1266",
+      "titre": "Personnel des entreprises de restauration de collectivités",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1351",
+      "titre": "Entreprises de prévention et de sécurité",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1431",
+      "titre": "Optique-lunetterie de détail",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1486",
+      "titre": "Bureaux d'études techniques, cabinets d'ingénieurs-conseils et sociétés de conseils (SYNTEC)",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1501",
+      "titre": "Restauration rapide",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1516",
+      "titre": "Organismes de formation",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1517",
+      "titre": "Commerces de détail non alimentaires",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1518",
+      "titre": "Métiers de l'éducation, de la culture, des loisirs et de l'animation (ÉCLAT)",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1527",
+      "titre": "Immobilier",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1596",
+      "titre": "Bâtiment, ouvriers (entreprises jusqu'à 10 salariés)",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1597",
+      "titre": "Bâtiment, ouvriers (entreprises de plus de 10 salariés)",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1619",
+      "titre": "Cabinets dentaires",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1672",
+      "titre": "Sociétés d'assurances",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1702",
+      "titre": "Travaux publics, ouvriers",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1710",
+      "titre": "Agences de voyages et de tourisme",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1978",
+      "titre": "Fleuristes, vente et services des animaux familiers",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1979",
+      "titre": "Hôtels, cafés, restaurants (HCR)",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "1996",
+      "titre": "Pharmacie d'officine",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "2098",
+      "titre": "Personnel des prestataires de services dans le domaine du secteur tertiaire",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "2111",
+      "titre": "Salariés du particulier employeur",
+      "statut": "fusionnee",
+      "fusionDans": "3239"
+    },
+    {
+      "idcc": "2120",
+      "titre": "Banque",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "2128",
+      "titre": "Mutualité",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "2216",
+      "titre": "Commerce de détail et de gros à prédominance alimentaire",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "2247",
+      "titre": "Entreprises de courtage d'assurances et/ou de réassurances",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "2264",
+      "titre": "Hospitalisation privée",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "2395",
+      "titre": "Assistants maternels du particulier employeur",
+      "statut": "fusionnee",
+      "fusionDans": "3239"
+    },
+    {
+      "idcc": "2420",
+      "titre": "Bâtiment, cadres",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "2511",
+      "titre": "Sport",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "2596",
+      "titre": "Coiffure et professions connexes",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "2609",
+      "titre": "Bâtiment, ETAM",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "2614",
+      "titre": "Travaux publics, ETAM",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "2941",
+      "titre": "Aide, accompagnement, soins et services à domicile (BAD)",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "3032",
+      "titre": "Esthétique-cosmétique et enseignement associé",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "3043",
+      "titre": "Entreprises de propreté et services associés",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "3127",
+      "titre": "Entreprises de services à la personne",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "3212",
+      "titre": "Travaux publics, cadres",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "3218",
+      "titre": "Enseignement privé non lucratif (EPNL)",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "3239",
+      "titre": "Particuliers employeurs et emploi à domicile",
+      "statut": "en_vigueur"
+    },
+    {
+      "idcc": "3248",
+      "titre": "Métallurgie",
+      "statut": "en_vigueur"
+    }
+  ]
+}
