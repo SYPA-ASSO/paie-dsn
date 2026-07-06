@@ -8,6 +8,7 @@ import { clientNavigateur } from "@/lib/supabase/client";
 
 export default function NouveauMotDePasse() {
   const [pret, setPret] = useState<"chargement" | "ok" | "expire">("chargement");
+  const [emailCompte, setEmailCompte] = useState("");
   const [nouveau, setNouveau] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [message, setMessage] = useState("");
@@ -17,8 +18,21 @@ export default function NouveauMotDePasse() {
     // Le client Supabase echange automatiquement le code present dans l'URL
     // contre une session ; on verifie ensuite qu'une session existe.
     const verifier = async () => {
+      // Lien rejete par Supabase : l'erreur arrive dans le fragment d'URL
+      if (
+        window.location.hash.includes("error") ||
+        window.location.search.includes("error")
+      ) {
+        setPret("expire");
+        return;
+      }
       const { data } = await clientNavigateur().auth.getSession();
-      setPret(data.session ? "ok" : "expire");
+      if (data.session) {
+        setEmailCompte(data.session.user.email ?? "");
+        setPret("ok");
+      } else {
+        setPret("expire");
+      }
     };
     const minuterie = setTimeout(verifier, 600);
     return () => clearTimeout(minuterie);
@@ -83,7 +97,21 @@ export default function NouveauMotDePasse() {
             onSubmit={definir}
             className="mt-6 rounded-2xl border border-line bg-white p-5"
           >
-            <label className="block text-sm font-semibold text-navy">
+            <p className="rounded-xl bg-ivory p-3 text-sm">
+              Compte concerné :{" "}
+              <span className="font-semibold text-navy">{emailCompte}</span>
+              <button
+                type="button"
+                onClick={async () => {
+                  await clientNavigateur().auth.signOut();
+                  setPret("expire");
+                }}
+                className="ml-2 text-xs font-semibold text-emerald-deep underline"
+              >
+                Ce n&apos;est pas vous ? Se déconnecter
+              </button>
+            </p>
+            <label className="mt-4 block text-sm font-semibold text-navy">
               Nouveau mot de passe (8 caractères minimum)
               <input
                 type="password"
