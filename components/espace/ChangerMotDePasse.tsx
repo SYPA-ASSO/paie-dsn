@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { clientNavigateur } from "@/lib/supabase/client";
+import { traduireErreur } from "@/lib/messages-auth";
 
 export default function ChangerMotDePasse() {
   const [ouvert, setOuvert] = useState(false);
@@ -25,7 +26,7 @@ export default function ChangerMotDePasse() {
       password: nouveau,
     });
     if (error) {
-      setStatut("La modification a échoué : " + error.message);
+      setStatut(traduireErreur(error.message));
       return;
     }
     setStatut("Mot de passe modifié. Utilisez-le dès votre prochaine connexion.");

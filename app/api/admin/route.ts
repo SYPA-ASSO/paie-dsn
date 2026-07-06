@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { traduireErreur } from "@/lib/messages-auth";
 import {
   clientService,
   configurationPresente,
@@ -327,6 +328,6 @@ export async function POST(requete: Request) {
     const message =
       (e as { message?: string })?.message ??
       (typeof e === "string" ? e : "Erreur inattendue.");
-    return NextResponse.json({ erreur: message }, { status: 400 });
+    return NextResponse.json({ erreur: traduireErreur(message) }, { status: 400 });
   }
 }

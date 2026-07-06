@@ -299,3 +299,8 @@ Sitemap : 17 URLs dont les articles de blog generes depuis lib/articles.ts.
 - Le mot de passe provisoire RESTE saisi et fonctionnel : filet de secours si l'e-mail n'arrive pas (le message du back-office indique apres creation si l'invitation est partie ou s'il faut transmettre le provisoire).
 - CONFIGURATION REQUISE (Supabase Dashboard, une fois) : Authentication -> URL Configuration -> Site URL = https://paie-et-dsn.fr ; Redirect URLs : ajouter https://paie-et-dsn.fr/espace-client/nouveau-mot-de-passe. Sans cela, le lien de l'e-mail est rejete par Supabase.
 - Cette page sert aussi de future page "mot de passe oublie" (le lien recovery est le meme mecanisme) : il restera a ajouter le declencheur cote connexion (bouton "Mot de passe oublie" -> resetPasswordForEmail), note V1.2.
+
+## 30. Messages d'erreur en francais partout
+
+- NOUVEAU lib/messages-auth.ts : traduireErreur() convertit les messages Supabase (anglais) en francais : mots de passe (identique a l'ancien, trop court, complexite), identifiants incorrects, e-mail deja enregistre, session expiree, liens expires, limites de tentatives, reseau, contraintes de base. Les messages deja en francais passent tels quels ; un message inconnu s'affiche en francais generique avec le detail technique entre parentheses.
+- Branche sur : la page /espace-client/nouveau-mot-de-passe, le composant ChangerMotDePasse, et l'API /api/admin (toutes les erreurs du back-office arrivent donc traduites dans AdminPanel et AdminSections). La connexion affichait deja un message francais fixe.

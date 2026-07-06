@@ -5,6 +5,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { clientNavigateur } from "@/lib/supabase/client";
+import { traduireErreur } from "@/lib/messages-auth";
 
 export default function NouveauMotDePasse() {
   const [pret, setPret] = useState<"chargement" | "ok" | "expire">("chargement");
@@ -51,7 +52,7 @@ export default function NouveauMotDePasse() {
     setMessage("Enregistrement...");
     const { error } = await clientNavigateur().auth.updateUser({ password: nouveau });
     if (error) {
-      setMessage(`Erreur : ${error.message}`);
+      setMessage(traduireErreur(error.message));
       return;
     }
     setFait(true);
