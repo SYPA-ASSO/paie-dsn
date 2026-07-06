@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { contenuArticles } from "@/lib/blog-contenu";
 import { articles } from "@/lib/articles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -13,6 +14,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "https://paie-et-dsn.fr/contact", lastModified: new Date(), changeFrequency: "yearly", priority: 0.8 },
     { url: "https://paie-et-dsn.fr/comprendre-bulletin-de-paie", lastModified: new Date(), changeFrequency: "yearly", priority: 0.7 },
     { url: "https://paie-et-dsn.fr/blog", lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
+    ...contenuArticles.map((a) => ({
+      url: `https://paie-et-dsn.fr/blog/${a.slug}`,
+      lastModified: new Date(a.dateMaj),
+      changeFrequency: "yearly" as const,
+      priority: 0.6,
+    })),
   ];
   for (const article of articles) {
     pages.push({
