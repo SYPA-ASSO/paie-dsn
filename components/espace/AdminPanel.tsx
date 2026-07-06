@@ -129,12 +129,19 @@ export default function AdminPanel({
       method: "POST",
       body: new FormData(formulaire),
     });
-    const resultat = (await reponse.json()) as { erreur?: string };
+    const resultat = (await reponse.json()) as {
+      erreur?: string;
+      information?: string;
+    };
     if (!reponse.ok) {
       setMessage(`Erreur (${libelle}) : ${resultat.erreur ?? "inconnue"}`);
       return;
     }
-    setMessage(`${libelle} : fait. Rechargez la page pour voir la mise à jour.`);
+    setMessage(
+      resultat.information
+        ? `${resultat.information} Rechargez la page pour voir la mise à jour.`
+        : `${libelle} : fait. Rechargez la page pour voir la mise à jour.`
+    );
     formulaire.reset();
   }
 

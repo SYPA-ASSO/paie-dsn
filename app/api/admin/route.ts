@@ -7,6 +7,59 @@ import {
 
 // Actions d'administration (creation d'organisation, d'utilisateur, depot de document).
 // Toutes les ecritures passent par la cle service, apres verification du role admin.
+type ClientService = ReturnType<typeof clientService>;
+
+async function envoyerInvitation(
+  service: ClientService,
+  email: string,
+  nomContact: string
+): Promise<string> {
+  // Genere un lien a usage unique ou le client definit lui-meme son mot de passe
+  const { data, error } = await service.auth.admin.generateLink({
+    type: "recovery",
+    email,
+    options: {
+      redirectTo: "https://paie-et-dsn.fr/espace-client/nouveau-mot-de-passe",
+    },
+  });
+  if (error || !data?.properties?.action_link) {
+    return "Compte créé. E-mail d'invitation non généré : transmettez le mot de passe provisoire par un canal séparé.";
+  }
+  const cleApi = process.env.BREVO_API_KEY;
+  const expediteur = process.env.CONTACT_TO_EMAIL;
+  if (!cleApi || !expediteur) {
+    return "Compte créé. Messagerie non configurée : transmettez le mot de passe provisoire par un canal séparé.";
+  }
+  const texte = [
+    `Bonjour${nomContact ? ` ${nomContact}` : ""},`,
+    "",
+    "Le Cabinet Cholez-Pagotto a ouvert votre espace client sur paie-et-dsn.fr.",
+    "",
+    "Pour définir votre mot de passe et accéder à votre espace, utilisez ce lien personnel (valable une seule fois) :",
+    data.properties.action_link,
+    "",
+    "Votre identifiant de connexion est votre adresse e-mail. Si le lien a expiré, utilisez le mot de passe provisoire communiqué par le cabinet, puis changez-le depuis votre espace, ou demandez un nouveau lien via le formulaire de contact : https://paie-et-dsn.fr/contact",
+    "",
+    "Cabinet Cholez-Pagotto · paie-et-dsn.fr",
+  ].join("\n");
+  try {
+    const reponse = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: { "api-key": cleApi, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sender: { name: "Cabinet Cholez-Pagotto · paie-et-dsn.fr", email: expediteur },
+        to: [{ email }],
+        subject: "Votre espace client paie-et-dsn.fr : définissez votre mot de passe",
+        textContent: texte,
+      }),
+    });
+    if (!reponse.ok) throw new Error();
+    return "Compte créé et e-mail d'invitation envoyé au client (lien de définition du mot de passe).";
+  } catch {
+    return "Compte créé. E-mail d'invitation non parti : transmettez le mot de passe provisoire par un canal séparé.";
+  }
+}
+
 export async function POST(requete: Request) {
   if (!configurationPresente() || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
     return NextResponse.json({ erreur: "Non configuré." }, { status: 503 });
@@ -56,7 +109,12 @@ export async function POST(requete: Request) {
         nom: String(donnees.get("nom") ?? "").trim() || null,
       });
       if (erreurProfil) throw erreurProfil;
-      return NextResponse.json({ ok: true });
+      const information = await envoyerInvitation(
+        service,
+        email,
+        String(donnees.get("nom") ?? "").trim()
+      );
+      return NextResponse.json({ ok: true, information });
     }
 
     if (action === "document") {
@@ -123,7 +181,12 @@ export async function POST(requete: Request) {
         nom: String(donnees.get("nom_contact") ?? "").trim() || nom,
       });
       if (erreurProfil) throw erreurProfil;
-      return NextResponse.json({ ok: true });
+      const information = await envoyerInvitation(
+        service,
+        email,
+        String(donnees.get("nom_contact") ?? "").trim() || nom
+      );
+      return NextResponse.json({ ok: true, information });
     }
 
     if (action === "organisation_offres") {
