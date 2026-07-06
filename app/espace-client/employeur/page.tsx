@@ -45,13 +45,14 @@ export default async function EspaceEmployeur() {
   const { data: organisation } = profil.organisation_id
     ? await supabase
         .from("organisations")
-        .select("offre_essentiel, offre_copilote")
+        .select("offre_paie, offre_essentiel, offre_copilote")
         .eq("id", profil.organisation_id)
         .single()
     : { data: null };
   const abonne = Boolean(
     organisation?.offre_essentiel || organisation?.offre_copilote
   );
+  const dossierPaie = organisation?.offre_paie !== false;
   const { data } = await supabase
     .from("documents")
     .select("id, type, periode, titre, cree_le")
@@ -73,10 +74,10 @@ export default async function EspaceEmployeur() {
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="text-sm font-bold uppercase tracking-wider text-amber-brand">
-              Espace employeur
+              Espace client
             </p>
             <h1 className="mt-1 text-2xl font-bold sm:text-3xl">
-              Votre dossier de paie
+              Votre dossier
             </h1>
           </div>
           <Deconnexion />
@@ -95,6 +96,7 @@ export default async function EspaceEmployeur() {
           </a>
         )}
 
+        {dossierPaie && (
         <section className="mt-8">
           <h2 className="text-lg font-bold text-navy">Votre mandat de tiers déclarant</h2>
           {mandats.length === 0 ? (
@@ -118,6 +120,8 @@ export default async function EspaceEmployeur() {
           )}
         </section>
 
+        )}
+
         <section className="mt-8">
           <h2 className="text-lg font-bold text-navy">Vos factures</h2>
           {factures.length === 0 ? (
@@ -139,6 +143,7 @@ export default async function EspaceEmployeur() {
           )}
         </section>
 
+        {dossierPaie && (
         <section className="mt-8">
           <h2 className="text-lg font-bold text-navy">Vos documents de paie, par période</h2>
           {periodes.length === 0 && (
@@ -170,6 +175,7 @@ export default async function EspaceEmployeur() {
             </div>
           ))}
         </section>
+        )}
         {abonne && (
           <p className="mt-10 text-sm text-ink/70">
             Votre abonnement est résiliable à tout moment :{" "}

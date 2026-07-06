@@ -86,6 +86,46 @@ export async function POST(requete: Request) {
       return NextResponse.json({ ok: true });
     }
 
+    if (action === "client_complet") {
+      const nom = String(donnees.get("nom") ?? "").trim();
+      const email = String(donnees.get("email") ?? "").trim();
+      const motdepasse = String(donnees.get("motdepasse") ?? "");
+      if (!nom) throw new Error("Nom du client requis.");
+      if (!email || motdepasse.length < 8) {
+        throw new Error("E-mail et mot de passe provisoire (8 caractères minimum) requis.");
+      }
+      const { data: organisation, error: erreurOrganisation } = await service
+        .from("organisations")
+        .insert({
+          nom,
+          siret: String(donnees.get("siret") ?? "").trim() || null,
+          offre_paie: donnees.get("offre_paie") === "on",
+          offre_essentiel: donnees.get("offre_essentiel") === "on",
+          offre_copilote: donnees.get("offre_copilote") === "on",
+        })
+        .select("id")
+        .single();
+      if (erreurOrganisation) throw erreurOrganisation;
+      const { data: cree, error: erreurUtilisateur } = await service.auth.admin.createUser({
+        email,
+        password: motdepasse,
+        email_confirm: true,
+      });
+      if (erreurUtilisateur) {
+        throw new Error(
+          `Dossier créé, mais compte non créé : ${erreurUtilisateur.message}. Créez le compte via "+ Compte" en le rattachant au dossier.`
+        );
+      }
+      const { error: erreurProfil } = await service.from("profils").insert({
+        user_id: cree.user.id,
+        role: "employeur",
+        organisation_id: organisation.id,
+        nom: String(donnees.get("nom_contact") ?? "").trim() || nom,
+      });
+      if (erreurProfil) throw erreurProfil;
+      return NextResponse.json({ ok: true });
+    }
+
     if (action === "organisation_offres") {
       const organisation = String(donnees.get("organisation_id") ?? "");
       if (!organisation) throw new Error("Organisation requise.");

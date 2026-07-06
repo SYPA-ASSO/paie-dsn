@@ -3,7 +3,9 @@ import { redirect } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Deconnexion from "@/components/espace/Deconnexion";
-import AdminPanel from "@/components/espace/AdminPanel";
+import AdminPanel, {
+  type SouscriptionARattacher,
+} from "@/components/espace/AdminPanel";
 import {
   clientServeur,
   clientService,
@@ -133,6 +135,23 @@ export default async function Admin() {
   const emailsComptes = new Set(
     [...emails.values()].map((e) => e.toLowerCase())
   );
+  // Souscriptions actives sans compte correspondant : proposees au pre-remplissage
+  const clesFormules: Record<string, string> = {
+    "L'Essentiel Social": "essentiel",
+    "Le Copilote Social": "copilote",
+  };
+  const aRattacher: SouscriptionARattacher[] = souscriptions
+    .filter(
+      (s) =>
+        (s.statut === "Actif" || s.statut === "Essai") &&
+        s.email &&
+        !emailsComptes.has(s.email.toLowerCase())
+    )
+    .map((s) => ({
+      nom: s.nom,
+      email: s.email,
+      formule: clesFormules[s.formule] ?? "essentiel",
+    }));
 
   const listeOrganisations = organisations ?? [];
   const listeProfils = (profils ?? []).map((p) => ({
@@ -171,6 +190,7 @@ export default async function Admin() {
         <AdminPanel
           organisations={listeOrganisations}
           utilisateurs={listeProfils}
+          aRattacher={aRattacher}
         />
 
         <section className="mt-12">
@@ -189,6 +209,11 @@ export default async function Admin() {
             </p>
           ) : (
             <div className="mt-2 overflow-x-auto rounded-2xl border border-line bg-white p-4">
+              <p className="mb-2 text-xs text-ink/60">
+                Badge « Dossier à créer » : utilisez le bouton + Nouveau client
+                ci-dessus, le pré-remplissage reprend la souscription et
+                l&apos;e-mail identique rattache automatiquement.
+              </p>
               <table className="w-full min-w-[640px] text-left text-sm">
                 <thead>
                   <tr className="border-b border-line text-xs uppercase tracking-wide text-ink/60">
@@ -393,7 +418,7 @@ export default async function Admin() {
                         </span>
                         <span className="text-ink/60">{p.email ?? ""}</span>
                         <span className="rounded-full bg-emerald-tint px-2 text-xs font-semibold leading-5 text-emerald-deep">
-                          {p.role}
+                          {p.role === "employeur" ? "client" : p.role}
                         </span>
                       </li>
                     ))}
