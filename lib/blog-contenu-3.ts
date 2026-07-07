@@ -456,4 +456,77 @@ export const articles2026: ContenuArticle[] = [
     ],
     cta: "Avant de signer une embauche, demandez la simulation du coût complet sur votre convention : elle est offerte avec le devis.",
   },
+  {
+    slug: "code-ape-convention-collective-erreur-paie",
+    titre: "Code APE et convention collective : l'erreur d'identification qui fausse toute la paie",
+    description:
+      "Le code APE ne détermine pas la convention collective applicable : seule l'activité principale réelle compte. La méthode pour vérifier votre rattachement, et ce que risque un employeur qui applique la mauvaise CCN.",
+    categorie: "RH",
+    date: "2026-07-06",
+    dateAffichee: "6 juillet 2026",
+    dateMaj: "2026-07-06",
+    dateMajAffichee: "6 juillet 2026",
+    tempsLecture: 5,
+    intro: [
+      "Le réflexe est presque universel : pour connaître sa convention collective, on regarde le code APE attribué par l'Insee, on cherche la correspondance sur internet, et on paramètre la paie en conséquence. C'est rapide, rassurant, et juridiquement fragile : le code APE n'a qu'une valeur indicative, et le raccourci « APE égale CCN » est l'une des causes les plus fréquentes de conventions erronées que nous rencontrons en reprise de dossier.",
+      "Voici pourquoi ce raccourci trompe, ce qu'il coûte quand il se trompe, et la méthode qui sécurise réellement le rattachement conventionnel.",
+    ],
+    sections: [
+      {
+        id: "un-indice-pas-une-preuve",
+        titre: "Le code APE : un indice administratif, jamais une preuve",
+        paragraphes: [
+          "La règle est constante : la convention collective applicable est celle dont le champ d'application couvre l'activité principale réellement exercée par l'employeur. Le champ de chaque convention est défini en termes d'activités économiques et de territoire, pas par renvoi aux codes de l'Insee ; et la Cour de cassation juge de manière répétée que le code APE ou NAF ne constitue qu'un indice, le juge devant rechercher concrètement l'activité principale de l'entreprise.",
+          "La confusion vient en partie du bulletin de paie lui-même : il doit mentionner à la fois le code de la nomenclature d'activité de l'établissement et, s'il y a lieu, l'intitulé de la convention collective applicable. Deux mentions voisines, deux logiques distinctes : la première est statistique, la seconde est juridique. Un code APE ancien, attribué à la création puis jamais revu malgré une diversification ou un recentrage de l'activité, peut pointer vers une branche qui n'est plus la bonne depuis des années.",
+        ],
+      },
+      {
+        id: "ce-que-coute-l-erreur",
+        titre: "Ce que coûte une convention erronée",
+        paragraphes: [
+          "Une mauvaise CCN fausse tout ce qu'elle irrigue : minima et classifications (avec des rappels de salaire réclamables sur trois ans si la convention réellement applicable était plus favorable), primes conventionnelles, maintien de salaire en maladie, préavis, et prévoyance obligatoire de branche, dont le défaut de souscription peut mettre à la charge de l'employeur l'indemnisation d'un décès ou d'une invalidité.",
+          "S'y ajoute un piège moins connu : la convention mentionnée sur le bulletin de paie crée, au profit du salarié, une présomption d'applicabilité. L'employeur peut la combattre en prouvant l'erreur, mais tant qu'elle figure sur les documents, le salarié est fondé à en réclamer les avantages ; et lorsque la convention est visée dans le contrat de travail, la mention prend une valeur contractuelle plus difficile encore à défaire. Une convention affichée « par habitude » ou « par paramétrage » n'est donc jamais neutre : elle engage. Notre article sur l'identification de la convention par l'IDCC détaille ces risques : [comment trouver sa convention collective](/blog/trouver-sa-convention-collective-idcc).",
+        ],
+      },
+      {
+        id: "la-methode",
+        titre: "La méthode en quatre vérifications",
+        paragraphes: [
+          "Premier réflexe : qualifier l'activité principale réelle, celle qui occupe le plus de salariés ou génère l'essentiel du chiffre d'affaires, sans se contenter du paramétrage historique du logiciel de paie ni de l'extrait Insee. Deuxième réflexe : lire le champ d'application de la ou des conventions pressenties, article premier de chaque texte, qui fixe le périmètre professionnel et territorial ; c'est lui qui tranche, pas la table de correspondance d'un site internet. Troisième réflexe : vérifier l'extension de la convention par arrêté ministériel, qui la rend obligatoire pour tous les employeurs entrant dans son champ, adhérents ou non d'une organisation patronale.",
+          "Quatrième réflexe : contrôler la cohérence de tous les supports une fois la convention identifiée, bulletins (intitulé et code IDCC), DSN, contrats de travail, information des salariés et paramétrage de paie. Et garder en tête que le paysage bouge : les fusions de branches se sont multipliées et le référentiel officiel a changé de format en juin 2026 ; notre [référentiel des conventions collectives](/conventions-collectives), synchronisé sur le fichier officiel, signale les fusions avec renvoi vers la convention absorbante.",
+        ],
+      },
+      {
+        id: "comment-nous-securisons-ce-point",
+        titre: "Comment le cabinet sécurise ce point, et où s'arrête son rôle",
+        paragraphes: [
+          "La vérification du rattachement conventionnel est le premier acte technique de toute reprise de dossier de paie chez nous : avant de produire le moindre bulletin, nous confrontons l'activité réelle déclarée au champ d'application de la convention pressentie, nous contrôlons l'IDCC porté sur vos bulletins et vos DSN, et nous documentons la conclusion dans le dossier. Cette vérification est indissociable de l'établissement d'une paie juste, c'est à ce titre que nous la réalisons, et elle est comprise dans le [cadrage de reprise](/blog/externaliser-paie-ou-logiciel-comparatif) chiffré au devis.",
+          "Son périmètre a une limite claire, que nous assumons : si la qualification de votre activité est réellement disputée (deux branches revendicables, contentieux engagé par un salarié, restructuration complexe), l'analyse relève alors de la consultation juridique personnalisée, et nous vous orientons vers un avocat, comme le prévoit notre [périmètre d'intervention](/notre-perimetre). Entre le raccourci du code APE et le contentieux, il existe heureusement un vaste espace où une vérification méthodique, faite au bon moment, évite les deux.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Le code APE détermine-t-il la convention collective applicable ?",
+        reponse:
+          "Non. Il n'a qu'une valeur indicative : la convention applicable est celle dont le champ d'application couvre l'activité principale réellement exercée par l'employeur. Un code APE inchangé depuis la création de l'entreprise peut pointer vers une branche devenue inexacte.",
+      },
+      {
+        question: "Le code APE doit-il figurer sur le bulletin de paie ?",
+        reponse:
+          "Oui : le bulletin comporte le code de la nomenclature d'activité de l'établissement, et, s'il y a lieu, l'intitulé de la convention collective applicable. Ce voisinage entretient la confusion, mais les deux mentions obéissent à des logiques distinctes.",
+      },
+      {
+        question: "Que se passe-t-il si la convention mentionnée sur mes bulletins est erronée ?",
+        reponse:
+          "La mention crée une présomption d'applicabilité au profit du salarié : il peut en réclamer les avantages tant que l'employeur ne prouve pas l'erreur. La correction est possible, avec information des salariés ; sur le passé, la convention réellement applicable, si elle était plus favorable, peut fonder des rappels sur trois ans.",
+      },
+      {
+        question: "Comment vérifier concrètement ma convention collective ?",
+        reponse:
+          "Qualifiez votre activité principale réelle, lisez le champ d'application de la convention pressentie, vérifiez son extension, puis alignez tous vos supports (bulletins, DSN, contrats, information des salariés). Cette vérification fait partie du cadrage de toute reprise de dossier de paie par le cabinet ; les situations litigieuses relèvent d'un avocat.",
+      },
+    ],
+    cta: "Un doute sur votre rattachement conventionnel ? La vérification est comprise dans toute reprise de dossier : demandez votre devis.",
+  },
 ];
