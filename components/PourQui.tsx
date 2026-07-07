@@ -7,7 +7,7 @@ const publics = [
   {
     titre: "Associations et ESS",
     texte:
-      "Animation, sport, aide à domicile, insertion, mais aussi coopératives, mutuelles, fondations et fonds de dotation : quelle que soit votre convention collective, la paie de l'ESS a ses spécificités, ses financements et ses contrats particuliers. Nous les connaissons.",
+      "Animation, sport, aide à domicile, insertion, mais aussi coopératives, mutuelles, fondations et fonds de dotation : ÉCLAT, sport, aide à domicile ou autre convention de l'économie sociale : la paie de l'ESS a ses spécificités, ses financements et ses contrats particuliers, que nous pratiquons au quotidien.",
   },
   {
     titre: "Professions libérales",

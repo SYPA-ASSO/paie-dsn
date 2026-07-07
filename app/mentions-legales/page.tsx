@@ -79,7 +79,13 @@ export default function MentionsLegales() {
             <h2 className="text-xl font-bold">Hébergement</h2>
             <p className="mt-2">
               L&apos;hébergement du site est réalisé par Vercel Inc., 340 Pine
-              Street Suite 701, San Francisco CA 94104, États-Unis.
+              Street Suite 701, San Francisco CA 94104, États-Unis
+              (vercel.com). Les fonctions applicatives sont exécutées dans
+              l&apos;Union européenne (région Paris, France) et les transferts
+              sont encadrés par le Data Privacy Framework UE-États-Unis. Les
+              données de l&apos;espace client (base de données,
+              authentification, documents) sont hébergées par Supabase dans
+              l&apos;Union européenne (région Irlande).
             </p>
           </section>
           <section>

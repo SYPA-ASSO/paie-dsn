@@ -31,7 +31,7 @@ const faq = [
   {
     question: "Gérez-vous la paie de toutes les conventions collectives ?",
     reponse:
-      "Oui. Chaque bulletin est établi selon la convention applicable à votre activité : grilles de salaires, primes, indemnités, caisses spécifiques (congés payés du bâtiment par exemple). Les conventions à régime particulier font simplement l'objet d'un temps de traitement adapté, reflété dans le devis.",
+      "Notre référentiel couvre les 585 conventions de branche en vigueur, et chaque bulletin est établi selon la convention applicable à votre activité : grilles de salaires, primes, indemnités, caisses spécifiques (congés payés du bâtiment par exemple). Chaque reprise de dossier débute par un cadrage conventionnel ; les conventions à régime particulier font l'objet d'un temps de traitement adapté, reflété dans le devis. Et si aucune convention ne couvre votre activité (code 9999), nous établissons la paie sur le seul Code du travail, cas plus rare qu'on ne le croit mais parfaitement pris en charge.",
   },
 ];
 

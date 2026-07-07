@@ -6,17 +6,17 @@ export default function Hero() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
         <div>
           <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-brand/30 bg-emerald-tint px-3 py-1 text-xs font-semibold text-emerald-deep">
-            <span aria-hidden="true">●</span> Toutes conventions collectives
+            <span aria-hidden="true">●</span> 585 conventions couvertes, avec ou sans CCN
           </p>
           <h1 className="text-4xl font-bold leading-tight sm:text-5xl">
             Votre paie et vos DSN,{" "}
             <span className="text-emerald-deep">prises en main de A à Z</span>
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed">
-            Pas de logiciel à apprendre, pas de paramétrage, pas de veille à
-            faire. Vous transmettez vos variables du mois, nous établissons les
-            bulletins et transmettons vos déclarations sociales. Vous archivez,
-            c&apos;est tout.
+            Pas de logiciel à apprendre, pas de paramétrage : la veille
+            juridique et conventionnelle est incluse dans la prestation. Vous
+            transmettez vos variables du mois, nous établissons les bulletins,
+            vous les validez, et nous transmettons vos déclarations sociales.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a

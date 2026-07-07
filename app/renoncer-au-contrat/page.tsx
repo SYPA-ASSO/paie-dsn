@@ -30,14 +30,33 @@ export default async function RenoncerAuContrat({
         </h1>
         <p className="mt-5 leading-relaxed">
           Cette page vous permet d&apos;exercer en ligne, gratuitement et sans
-          compte, votre <strong>droit de rétractation</strong>{" "}
-          (14&nbsp;jours à compter de la souscription, article L. 221-18 du
-          Code de la consommation) ou de <strong>résilier</strong>{" "}
-          votre abonnement à tout moment, conformément à l&apos;article
-          L.&nbsp;221-21 du Code de la consommation. Renseignez la
-          déclaration, confirmez, et recevez immédiatement un accusé de
-          réception horodaté par e-mail.
+          compte, deux droits distincts. Renseignez la déclaration, confirmez,
+          et recevez immédiatement un accusé de réception horodaté par e-mail.
         </p>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-2xl border border-line bg-white p-5 text-sm leading-relaxed">
+            <p className="font-bold text-navy">La rétractation</p>
+            <p className="mt-1">
+              Revenir sur une souscription récente : 14&nbsp;jours à compter de
+              la conclusion du contrat (article L.&nbsp;221-18 du Code de la
+              consommation), exerçable en ligne via cette fonctionnalité
+              (article L.&nbsp;221-21). Particularité des abonnements de
+              contenu numérique : si vous avez demandé l&apos;exécution
+              immédiate lors de la souscription, vous avez renoncé à ce droit
+              (article L.&nbsp;221-28, 13° ; voir CGV, article 12).
+            </p>
+          </div>
+          <div className="rounded-2xl border border-line bg-white p-5 text-sm leading-relaxed">
+            <p className="font-bold text-navy">La résiliation</p>
+            <p className="mt-1">
+              Mettre fin à un abonnement en cours : à tout moment, sans frais
+              ni motif, avec effet au terme de la période mensuelle en cours.
+              Pour les contrats conclus en ligne, cette fonctionnalité de
+              résiliation vous est garantie en ligne (article
+              L.&nbsp;215-1-1 du Code de la consommation).
+            </p>
+          </div>
+        </div>
 
         <div className="mt-10 rounded-2xl border border-line bg-ivory p-6 sm:p-8">
           <FormulaireRenonciation typeInitial={typeInitial} />

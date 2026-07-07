@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: "%s | paie-et-dsn.fr",
   },
   description:
-    "Externalisation de la paie et des DSN pour TPE, PME, associations, professions libérales et particuliers employeurs. Vous transmettez vos variables, nous faisons le reste : bulletins conformes, DSN transmises, entrées et sorties gérées. Toutes conventions collectives.",
+    "Externalisation de la paie et des DSN pour TPE, PME, associations, professions libérales et particuliers employeurs. Vous transmettez vos variables, nous faisons le reste : bulletins établis selon votre convention collective, DSN transmises aux échéances, entrées et sorties gérées. Référentiel des 585 conventions de branche en vigueur.",
   alternates: {
     canonical: "https://paie-et-dsn.fr",
   },
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "paie-et-dsn.fr",
     title: "Paie et DSN externalisées pour tous les employeurs",
     description:
-      "Vous transmettez vos variables, nous faisons le reste : bulletins conformes, DSN transmises, entrées et sorties gérées. Toutes conventions collectives.",
+      "Vous transmettez vos variables, nous faisons le reste : bulletins établis selon votre convention collective, DSN transmises aux échéances, entrées et sorties gérées. Référentiel des 585 conventions de branche en vigueur.",
   },
   robots: {
     index: true,

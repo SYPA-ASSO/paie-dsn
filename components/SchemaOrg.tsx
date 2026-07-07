@@ -18,7 +18,7 @@ export default function SchemaOrg() {
         name: "paie-et-dsn.fr — Cabinet Cholez-Pagotto",
         url: "https://paie-et-dsn.fr",
         description:
-          "Externalisation de la paie et des déclarations sociales (DSN) pour les TPE, PME, associations, professions libérales et particuliers employeurs. Toutes conventions collectives.",
+          "Externalisation de la paie et des déclarations sociales (DSN) pour les TPE, PME, associations, professions libérales et particuliers employeurs. Référentiel des 585 conventions collectives de branche en vigueur.",
         telephone: "+33374474055",
         address: {
           "@type": "PostalAddress",

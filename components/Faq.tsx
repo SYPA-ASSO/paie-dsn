@@ -5,9 +5,14 @@ export const faqItems = [
       "Uniquement les variables du mois : heures travaillées ou supplémentaires, absences, congés, primes, tickets restaurant. Au démarrage du dossier, nous collectons une seule fois les éléments permanents : contrats, convention collective, taux accident du travail, caisses de retraite et de prévoyance.",
   },
   {
+    question: "Comment mes bulletins sont-ils validés chaque mois ?",
+    reponse:
+      "Dès réception complète de vos variables, vos bulletins sont mis à disposition sous trois jours ouvrés dans votre espace client. Vous les relisez : sans observation de votre part sous 48 heures, ils sont réputés validés et la DSN part à l'échéance légale. Ce circuit garantit des déclarations toujours à l'heure ; il suppose une relecture rapide de votre côté, et nous restons joignables pour toute observation.",
+  },
+  {
     question: "Toutes les conventions collectives sont-elles couvertes ?",
     reponse:
-      "Oui. Bâtiment, hôtellerie-restauration, commerce, bureaux d'études, animation, sport, aide à domicile, personnel des cabinets d'avocats, particuliers employeurs et toutes les autres : chaque bulletin est établi selon la convention applicable à votre activité, avec ses grilles, ses primes et ses spécificités.",
+      "Notre référentiel couvre les 585 conventions collectives de branche en vigueur : bâtiment, hôtellerie-restauration, commerce, bureaux d'études, animation, sport, aide à domicile, particuliers employeurs et toutes les autres. Chaque bulletin est établi selon la convention applicable à votre activité (grilles, primes, prévoyance), et chaque reprise de dossier commence par un cadrage conventionnel qui identifie les particularités et les éventuels cas atypiques. Nous gérons aussi la paie des employeurs sans convention collective (code 9999) : le Code du travail s'applique alors seul.",
   },
   {
     question: "Qui transmet la DSN ?",

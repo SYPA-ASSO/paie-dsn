@@ -78,10 +78,23 @@ export default function PolitiqueConfidentialite() {
           <section>
             <h2 className="text-xl font-bold">Hébergement et destinataires</h2>
             <p className="mt-2">
-              Le site est hébergé par Vercel Inc. Les échanges par e-mail
-              transitent par l&apos;hébergeur de messagerie du cabinet. Aucune
-              donnée n&apos;est vendue ni transmise à des tiers à des fins
-              commerciales.
+              L&apos;architecture distingue plusieurs briques. Le site public
+              (pages d&apos;information, simulateur) et les fonctions
+              applicatives sont opérés par Vercel Inc., avec exécution dans
+              l&apos;Union européenne (région Paris, France) et transferts
+              encadrés par le Data Privacy Framework UE-États-Unis ; aucune
+              donnée de paie n&apos;y est stockée, et le simulateur fonctionne
+              localement dans votre navigateur. Les données de l&apos;espace
+              client (comptes, authentification, dossiers, bulletins et
+              documents de paie) sont hébergées sur l&apos;infrastructure
+              Supabase, dans l&apos;Union européenne (région Irlande), avec
+              accès authentifié et cloisonné par rôle. Les e-mails
+              transactionnels (accusés de réception, invitations) sont émis
+              via Brevo, société française. Les paiements en ligne sont
+              traités par Stripe, prestataire de services de paiement, qui
+              collecte directement les données de carte bancaire : le cabinet
+              n&apos;y a jamais accès. Aucune donnée n&apos;est vendue ni
+              transmise à des tiers à des fins commerciales.
             </p>
           </section>
           <section>
