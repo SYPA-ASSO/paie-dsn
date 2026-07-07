@@ -18,6 +18,18 @@ export default function Hero() {
             transmettez vos variables du mois, nous établissons les bulletins,
             vous les validez, et nous transmettons vos déclarations sociales.
           </p>
+          <p className="mt-3 text-sm text-white/80">
+            Un service du{" "}
+            <a
+              href="https://cholez-pagotto.fr"
+              target="_blank"
+              rel="noopener"
+              className="font-semibold text-white underline decoration-white/50 hover:decoration-white"
+            >
+              Cabinet Cholez-Pagotto
+            </a>
+            , juriste en formalités et information juridique.
+          </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href="#contact"

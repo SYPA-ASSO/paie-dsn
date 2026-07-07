@@ -72,6 +72,8 @@ export default function Simulateur() {
   const [recherche, setRecherche] = useState("");
   const [selection, setSelection] = useState<Convention | null>(null);
   const [nb, setNb] = useState(1);
+  const [bascule, setBascule] = useState<"janvier" | "annee">("janvier");
+  const [moisBascule, setMoisBascule] = useState(7);
 
   const suggestions = useMemo(() => {
     const terme = normaliser(recherche.trim());
@@ -92,6 +94,21 @@ export default function Simulateur() {
     : MINUTES_COURANTE;
   const prixBulletin = arrondi50(TAUX_HORAIRE * (minutes / 60) * coefVolume(nb));
   const forfait = arrondi50(prixBulletin * nb);
+  // Reprise de dossier (grille du cabinet)
+  const FORFAIT_OUVERTURE = 120;
+  const REPRISE_PAR_SALARIE = 12;
+  const BULLETIN_RECONSTITUTION = 8;
+  const moisAReconstituer = bascule === "annee" ? Math.max(0, moisBascule - 1) : 0;
+  const ouvertureOfferte = bascule === "janvier" && nb >= 5;
+  const coutOuverture = ouvertureOfferte ? 0 : FORFAIT_OUVERTURE;
+  const coutReprise =
+    coutOuverture +
+    REPRISE_PAR_SALARIE * nb +
+    BULLETIN_RECONSTITUTION * nb * moisAReconstituer;
+  const nomsMois = [
+    "février", "mars", "avril", "mai", "juin", "juillet",
+    "août", "septembre", "octobre", "novembre", "décembre",
+  ];
   const niveau =
     minutes === MINUTES_COURANTE
       ? "convention courante"
@@ -178,6 +195,52 @@ export default function Simulateur() {
         />
       </label>
 
+      <div className="mt-5">
+        <p className="text-sm font-semibold text-navy">
+          Quand souhaitez-vous basculer chez nous&nbsp;?
+        </p>
+        <div className="mt-2 flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={() => setBascule("janvier")}
+            className={
+              bascule === "janvier"
+                ? "rounded-full bg-navy px-4 py-1.5 text-sm font-semibold text-white"
+                : "rounded-full border border-line bg-white px-4 py-1.5 text-sm font-semibold text-navy"
+            }
+          >
+            Au 1er janvier (ou première embauche)
+          </button>
+          <button
+            type="button"
+            onClick={() => setBascule("annee")}
+            className={
+              bascule === "annee"
+                ? "rounded-full bg-navy px-4 py-1.5 text-sm font-semibold text-white"
+                : "rounded-full border border-line bg-white px-4 py-1.5 text-sm font-semibold text-navy"
+            }
+          >
+            En cours d&apos;année
+          </button>
+        </div>
+        {bascule === "annee" && (
+          <label className="mt-3 block text-sm font-semibold text-navy">
+            Mois de bascule souhaité
+            <select
+              value={moisBascule}
+              onChange={(e) => setMoisBascule(Number(e.target.value))}
+              className="mt-1 w-full rounded-lg border border-line bg-ivory px-3 py-2 text-sm font-normal"
+            >
+              {nomsMois.map((mois, i) => (
+                <option key={mois} value={i + 2}>
+                  1er {mois}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+      </div>
+
       <div className="mt-5 rounded-xl bg-emerald-tint p-5 text-center">
         {surDevis ? (
           <p className="font-[family-name:var(--font-display)] text-xl font-bold text-emerald-deep">
@@ -194,6 +257,30 @@ export default function Simulateur() {
             </p>
             <p className="mt-1 text-sm text-ink/70">
               soit {formatEuro(prixBulletin)} par bulletin
+            </p>
+            <p className="mt-3 border-t border-emerald-deep/20 pt-3 text-sm text-ink/80">
+              Reprise de votre dossier (une seule fois)&nbsp;:{" "}
+              <span className="font-bold text-emerald-deep">
+                {formatEuro(coutReprise)}
+              </span>
+              {ouvertureOfferte && (
+                <span className="block text-xs text-ink/70">
+                  Forfait d&apos;ouverture offert (5 salariés et plus, bascule
+                  au 1er janvier)
+                </span>
+              )}
+              {moisAReconstituer > 0 && (
+                <span className="block text-xs text-ink/70">
+                  Dont reconstitution de {nb * moisAReconstituer} bulletin
+                  {nb * moisAReconstituer > 1 ? "s" : ""} depuis le 1er janvier
+                  (obligatoire pour la justesse des cumuls de l&apos;année)
+                </span>
+              )}
+              <span className="block text-xs text-ink/70">
+                Hors cadrage initial d&apos;une convention non encore outillée
+                au cabinet (90&nbsp;€, une seule fois par convention, précisé
+                au devis)
+              </span>
             </p>
           </>
         )}

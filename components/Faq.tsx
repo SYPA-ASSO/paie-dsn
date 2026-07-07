@@ -10,6 +10,21 @@ export const faqItems = [
       "Dès réception complète de vos variables, vos bulletins sont mis à disposition sous trois jours ouvrés dans votre espace client. Vous les relisez : sans observation de votre part sous 48 heures, ils sont réputés validés et la DSN part à l'échéance légale. Ce circuit garantit des déclarations toujours à l'heure ; il suppose une relecture rapide de votre côté, et nous restons joignables pour toute observation.",
   },
   {
+    question: "Comment se passe la reprise de mon dossier de paie ?",
+    reponse:
+      "Nous reprenons votre historique (cumuls de l'année, compteurs de congés, paramétrage conventionnel) à partir de vos derniers bulletins et journaux de paie, quel que soit votre outil ou prestataire actuel. La reprise est chiffrée dans le devis selon une grille simple : forfait d'ouverture de 120\u00a0€ (60\u00a0€ pour un particulier employeur, offert dès 5 salariés pour une bascule au 1er janvier), 12\u00a0€ par salarié repris, et, pour une bascule en cours d'année, 8\u00a0€ par bulletin reconstitué depuis le 1er janvier, la réglementation des cumuls l'imposant. Le simulateur ci-dessus l'estime pour votre situation. Votre premier bulletin chez nous est comparé ligne à ligne au dernier de votre ancien prestataire, tout écart expliqué par écrit.",
+  },
+  {
+    question: "Entrée, sortie, arrêt de travail en cours de mois : comment ça se passe ?",
+    reponse:
+      "Ces événements font partie du service : DPAE et affiliation pour une embauche, signalement DSN sous 5 jours et calcul des IJSS pour un arrêt (avec subrogation si vous maintenez le salaire), solde de tout compte et documents de fin de contrat pour une sortie. Vous nous signalez l'événement avec vos variables du mois, nous produisons tout le reste.",
+  },
+  {
+    question: "Que se passe-t-il si une DSN est rejetée ou qu'un organisme signale une anomalie ?",
+    reponse:
+      "Nous lisons chaque mois les retours des organismes (Urssaf, retraite, DGFiP, prévoyance) sur toutes les DSN que nous transmettons, et nous traitons les anomalies avant l'échéance suivante : correction, DSN annule et remplace ou régularisation selon le cas. C'est inclus dans la prestation, sans supplément, et vous êtes informé de toute anomalie significative concernant votre dossier.",
+  },
+  {
     question: "Toutes les conventions collectives sont-elles couvertes ?",
     reponse:
       "Notre référentiel couvre les 585 conventions collectives de branche en vigueur : bâtiment, hôtellerie-restauration, commerce, bureaux d'études, animation, sport, aide à domicile, particuliers employeurs et toutes les autres. Chaque bulletin est établi selon la convention applicable à votre activité (grilles, primes, prévoyance), et chaque reprise de dossier commence par un cadrage conventionnel qui identifie les particularités et les éventuels cas atypiques. Nous gérons aussi la paie des employeurs sans convention collective (code 9999) : le Code du travail s'applique alors seul.",
