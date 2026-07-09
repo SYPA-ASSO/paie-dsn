@@ -82,7 +82,7 @@ export default function CookieBanner() {
                   Cookies et confidentialité
                 </p>
                 <p className="text-[11px] text-white/60">
-                  Paie et DSN · service du Cabinet Cholez-Pagotto
+                  Paie et DSN - Service de CBT CHOLEZ-PAGOTTO
                 </p>
               </div>
             </div>
