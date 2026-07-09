@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Figtree, Poppins } from "next/font/google";
 import "./globals.css";
+import CookieBanner from "@/components/CookieBanner";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -55,7 +56,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${bricolage.variable} ${figtree.variable} ${poppins.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">{children}<CookieBanner />
+      </body>
     </html>
   );
 }

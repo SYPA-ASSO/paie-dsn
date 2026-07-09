@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 export default function Footer() {
@@ -157,6 +159,17 @@ export default function Footer() {
               >
                 Politique de confidentialité
               </Link>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={() =>
+                  window.dispatchEvent(new Event("ouvrir-preferences-cookies"))
+                }
+                className="hover:text-emerald-deep"
+              >
+                Gérer mes cookies
+              </button>
             </li>
             <li>
               <Link

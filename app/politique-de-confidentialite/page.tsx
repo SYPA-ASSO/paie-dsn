@@ -28,10 +28,17 @@ export default function PolitiqueConfidentialite() {
           <section>
             <h2 className="text-xl font-bold">Ce site ne vous piste pas</h2>
             <p className="mt-2">
-              Ce site ne dépose aucun cookie de suivi et n&apos;utilise aucun
-              outil de mesure d&apos;audience tiers. Seuls des cookies
+              Ce site utilise Google Analytics, un outil de mesure
+              d&apos;audience, uniquement avec votre accord préalable : un
+              bandeau vous permet d&apos;accepter ou de refuser son activation
+              à votre première visite, et vous pouvez modifier ce choix à tout
+              moment en effaçant les données de navigation de votre
+              navigateur pour ce site. En l&apos;absence d&apos;accord, aucun
+              cookie de mesure n&apos;est déposé. Les adresses IP sont
+              anonymisées avant tout traitement statistique. Seuls des cookies
               strictement nécessaires à l&apos;authentification sont utilisés
-              dans l&apos;espace client. Les polices de caractères sont auto-hébergées : aucune
+              dans l&apos;espace client, sans recueil de consentement requis
+              pour ceux-ci. Les polices de caractères sont auto-hébergées : aucune
               donnée n&apos;est transmise à Google ou à un autre fournisseur de
               polices lors de votre visite. Le simulateur de tarif fonctionne
               entièrement dans votre navigateur : les valeurs que vous
