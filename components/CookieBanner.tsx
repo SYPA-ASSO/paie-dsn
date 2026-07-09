@@ -67,68 +67,68 @@ export default function CookieBanner() {
       )}
 
       {afficher && (
-        <div className="fixed inset-x-0 bottom-0 z-50 flex justify-center p-4 sm:p-6">
-          <div className="w-full max-w-2xl overflow-hidden rounded-2xl border-2 border-emerald-brand bg-navy shadow-[0_-12px_40px_rgba(15,37,68,0.45)]">
-            <div className="flex items-center gap-3 border-b border-white/10 bg-navy-soft px-5 py-4">
+        <div className="fixed bottom-4 left-4 z-50 max-w-sm sm:bottom-5 sm:left-5">
+          <div className="overflow-hidden rounded-2xl border-2 border-emerald-brand bg-navy shadow-[0_12px_40px_rgba(15,37,68,0.45)]">
+            <div className="flex items-center gap-2.5 border-b border-white/10 bg-navy-soft px-4 py-3">
               <Image
                 src="/logo-paie-et-dsn-fond-sombre.svg"
                 alt=""
-                width={28}
-                height={28}
+                width={22}
+                height={22}
                 className="shrink-0"
               />
               <div>
-                <p className="font-[family-name:var(--font-display)] text-base font-bold text-white">
+                <p className="font-[family-name:var(--font-display)] text-sm font-bold text-white">
                   Cookies et confidentialité
                 </p>
-                <p className="text-xs text-white/60">Cabinet Cholez-Pagotto</p>
+                <p className="text-[11px] text-white/60">
+                  Paie et DSN · service du Cabinet Cholez-Pagotto
+                </p>
               </div>
             </div>
 
-            <div className="space-y-4 px-5 py-4">
+            <div className="space-y-3 px-4 py-3">
               <div>
-                <p className="flex items-center gap-2 text-sm font-bold text-white">
-                  <span className="inline-block h-2 w-2 rounded-full bg-emerald-brand" />
+                <p className="flex items-center gap-2 text-xs font-bold text-white">
+                  <span className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-brand" />
                   Cookies techniques : toujours actifs
                 </p>
-                <p className="mt-1 text-sm leading-relaxed text-white/75">
-                  Session, authentification de votre espace client et sécurité
-                  du paiement. Indispensables au fonctionnement du site,
-                  exemptés de consentement (CNIL 2020-091).
+                <p className="mt-1 text-xs leading-relaxed text-white/70">
+                  Session, authentification et sécurité du paiement.
+                  Exemptés de consentement (CNIL 2020-091).
                 </p>
               </div>
               <div>
-                <p className="flex items-center gap-2 text-sm font-bold text-white">
-                  <span className="inline-block h-2 w-2 rounded-full bg-amber-brand" />
+                <p className="flex items-center gap-2 text-xs font-bold text-white">
+                  <span className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-amber-brand" />
                   Mesure d&apos;audience : votre choix
                 </p>
-                <p className="mt-1 text-sm leading-relaxed text-white/75">
-                  Google Analytics nous aide à comprendre comment le site est
-                  utilisé pour l&apos;améliorer. Aucune publicité, aucun suivi
-                  entre sites. Conservation 13 mois.
+                <p className="mt-1 text-xs leading-relaxed text-white/70">
+                  Google Analytics, sans publicité ni suivi entre sites.
+                  Conservation 13 mois.
                 </p>
               </div>
             </div>
 
-            <div className="flex flex-col gap-3 border-t border-white/10 px-5 py-4 sm:flex-row-reverse">
-              <button
-                type="button"
-                onClick={() => choisir("accepte")}
-                className="flex-1 rounded-full bg-emerald-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-deep"
-              >
-                Accepter
-              </button>
+            <div className="flex gap-2 border-t border-white/10 px-4 py-3">
               <button
                 type="button"
                 onClick={() => choisir("refuse")}
-                className="flex-1 rounded-full border border-white/30 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/10"
+                className="flex-1 rounded-full border border-white/30 px-3 py-2 text-xs font-semibold text-white transition hover:bg-white/10"
               >
                 Refuser
               </button>
+              <button
+                type="button"
+                onClick={() => choisir("accepte")}
+                className="flex-1 rounded-full bg-emerald-brand px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-deep"
+              >
+                Accepter
+              </button>
             </div>
 
-            <p className="border-t border-white/10 px-5 py-3 text-xs leading-relaxed text-white/55">
-              Votre choix est enregistré 13 mois.{" "}
+            <p className="border-t border-white/10 px-4 py-2.5 text-[11px] leading-relaxed text-white/55">
+              Choix enregistré 13 mois.{" "}
               <a
                 href="/politique-de-confidentialite"
                 className="font-semibold text-amber-brand underline underline-offset-2 hover:text-amber-brand/80"
